@@ -12,7 +12,7 @@ class RecipeRepository {
   }
 
   createNameProperty(recipe, ingredientsData) {
-    
+    //psedo
   }
 }
 
