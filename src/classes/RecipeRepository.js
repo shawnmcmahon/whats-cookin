@@ -1,8 +1,18 @@
 class RecipeRepository {
-  constructor() {
+  constructor(recipeData) {
+    this.recipeData = recipeData;
 
-    // One class to get you started!
   }
+
+  retrieveRecipesByTag(tag) {
+
+  }
+
+  retrieveRecipesByNameOrIngredient(keyword) {
+
+  }
+
+
 }
 
 export default RecipeRepository;
