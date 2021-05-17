@@ -50,3 +50,5 @@ const sampleIngredientsData = [
       "estimatedCostInCents": 617
     }
   ];
+
+export default sampleIngredientsData;

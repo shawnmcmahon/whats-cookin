@@ -3,12 +3,16 @@ class RecipeRepository {
     this.recipesData = recipesData;
   }
   retrieveRecipesByTag(tag) {
-    // Filter through this.recipesData
-    // this.recipesData.tags includes tag
-    this.recipesData.filter(recipe => recipe.tags.includes(tag));
+    tag = tag.toLowerCase();
+    let results = this.recipesData.filter(recipe => recipe.tags.includes(tag));
+    return results
   }
-  retrieveRecipesByNameOrIngredient() {
+  retrieveRecipesByNameOrIngredient(keyword) {
 
+  }
+
+  createNameProperty(recipe, ingredientsData) {
+    //psedo
   }
 }
 
