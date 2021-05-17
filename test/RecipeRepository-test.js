@@ -5,7 +5,7 @@ import sampleIngredientsData from '../src/data/sampleIngredientsData';
 
 let recipeRepository;
 
-describe('Recipe', () => {
+describe('Recipe Repo Class', () => {
 
 
   beforeEach(() => {
