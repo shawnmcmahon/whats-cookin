@@ -324,7 +324,10 @@ const sampleRecipesData = [
       ],
       "name": "Dirty Steve's Original Wing Sauce",
       "tags": [
-        "sauce"
+        "sauce",
+        "main dish"
       ]
     }
   ];
+
+  export default sampleRecipesData;
