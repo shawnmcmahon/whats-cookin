@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
 import sampleRecipesData from '../src/data/sampleRecipesData';
 import sampleIngredientsData from '../src/data/sampleIngredientsData';
-
+import ingredients from '../src/data/ingredients';
 
 describe('Recipe Class', () => {
   let recipe;
@@ -42,7 +42,7 @@ describe('Recipe Class', () => {
   })
 
   it('Should contain a propert that includes all ingredients data', () => {
-    expect(recipe.ingredientsData).to.equal(sampleIngredientsData)
+    expect(recipe.ingredientsData).to.equal(sampleIngredientsData) //change later
   })
 
   it('Should contain a method that returns recipe instructions', () => {
@@ -75,7 +75,7 @@ describe('Recipe Class', () => {
     ])
   });
 
-  it.only('Should contain a method that determins the names of ingredients needed', () => {
+  it('Should contain a method that determins the names of ingredients needed', () => {
     const ingredientsNames = recipe.retrieveIngredientNames();
     expect(ingredientsNames).to.eql(
     [
@@ -90,6 +90,11 @@ describe('Recipe Class', () => {
     'semi sweet chips',
     'unsalted butter'
     ]);
+  });
+
+  it.only('Should contain a method that calculates total recipe cost', () => {
+    const totalCost = recipe.calculateRecipeCost();
+    expect(totalCost).to.eql(173.13);
   })
 
 })
