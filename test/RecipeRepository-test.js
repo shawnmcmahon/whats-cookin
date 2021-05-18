@@ -146,7 +146,7 @@ describe('Recipe Repo Class', () => {
         ]
         }
       ])
-    })
+  })
 
   it.only('Should have a method that retrieves recipes by a name or ingredient', () => {
     const recipesByNameorIngredient = recipeRepository.retrieveRecipesByNameOrIngredient('Chocolate');

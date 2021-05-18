@@ -1,3 +1,5 @@
+
+
 class RecipeRepository {
   constructor(recipesData) {
     this.recipesData = recipesData;
@@ -7,35 +9,31 @@ class RecipeRepository {
     let results = this.recipesData.filter(recipe => recipe.tags.includes(tag));
     return results
   }
-  retrieveRecipesByNameOrIngredient(keyword) {
-    // I want all of the names...but I want them lowercase so I can compare them
-    // So can we take the names first
-    keyword =  keyword.toLowerCase();
-    const searchResults = [];
-    const lowerCaseRecipeNames = this.recipesData.map(recipe => recipe.name.toLowerCase())
-    console.log('lower case names here', lowerCaseRecipeNames)
+
+
+  retrieveRecipesByNameOrIngredient(keyword, ingredientsData) {
+
+    const lowerCaseKeyword = keyword.toLowerCase();
+
+    const matchingRecipes = [];
+
+    const foundIngredient = ingredientsData.filter(ingredient => ingredient.name.includes(lowerCaseKeyword)).map(ingredient => ingredient.id);
 
     this.recipesData.forEach(recipe => {
-      lowerCaseRecipeNames.forEach(name => {
-        if (name === recipe.name) {
-          searchResults.push(recipe)
-        }
+      if (recipe.name.toLowerCase().includes(lowerCaseKeyword)) {
+        matchingRecipes.push(recipe);
+      }
+      recipe.ingredients.forEach(ingredient => {
+        foundIngredient.forEach(id => {
+          if (id === ingredient.id) {
+            matchingRecipes.push(recipe);
+          }
+        })
       })
-    })
-
-    return searchResults;
-
+    });
+    console.log('anyone home?', matchingRecipes);
+    return matchingRecipes;
   }
-
-  createNameProperty(recipe, ingredientsData) {
-    let info = recipe.ingredients.map(ingredient => {
-      const index = ingredientsData.findIndex(ingredientStat => ingredientStat.id === ingredient.id);
-      return {name: ingredientsData[index].name}
-    })
-    return info;
-  }
-
-
 }
 
 export default RecipeRepository;
