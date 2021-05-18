@@ -8,6 +8,10 @@ class Recipe {
     this.ingredientsData = ingredientsData;
   }
 
+  retrieveRecipeInstructions() {
+    return this.instructions;
+  }
+  // to determine names of ingredients needed
 
 }
 
