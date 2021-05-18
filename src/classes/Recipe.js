@@ -12,7 +12,6 @@ class Recipe {
     return this.instructions;
   }
 
-
   retrieveIngredientNames() {
     const ingredientIds = this.ingredients.map(ingredient => ingredient.id);
     const ingredientNames = [];
@@ -33,8 +32,6 @@ class Recipe {
     this.ingredients.forEach(ingredient => {
       this.ingredientsData.find(item => {
         if (ingredient.id === item.id) {
-          // console.log('what is this?', typeof item.estimatedCostInCents);
-          // console.log('what is this?', ingredient.quantity.amount);
           recipeCost += (item.estimatedCostInCents * ingredient.quantity.amount) / 100;
         }
       });

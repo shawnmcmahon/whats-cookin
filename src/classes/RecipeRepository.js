@@ -33,10 +33,6 @@ class RecipeRepository {
     console.log('anyone home?', matchingRecipes);
     return matchingRecipes;
   }
-
-  // createNameProperty(recipe, ingredientsData) {
-  //
-  // }
 }
 
 export default RecipeRepository;
