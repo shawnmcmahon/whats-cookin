@@ -148,9 +148,8 @@ describe('Recipe Repo Class', () => {
       ])
   })
 
-  it('Should have a method that retrieves recipes by a name or ingredient', () => {
-    const recipesByNameorIngredient =
-    recipeRepository.retrieveRecipesByNameOrIngredient('salt', sampleIngredientsData);
+  it.only('Should have a method that retrieves recipes by a name or ingredient', () => {
+    const recipesByNameorIngredient = recipeRepository.retrieveRecipesByNameOrIngredient('Chocolate');
     expect(recipesByNameorIngredient).to.eql([
       {
         "id": 595736,

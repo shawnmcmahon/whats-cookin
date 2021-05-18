@@ -10,6 +10,7 @@ class RecipeRepository {
     return results
   }
 
+
   retrieveRecipesByNameOrIngredient(keyword, ingredientsData) {
 
     const lowerCaseKeyword = keyword.toLowerCase();
@@ -33,10 +34,6 @@ class RecipeRepository {
     console.log('anyone home?', matchingRecipes);
     return matchingRecipes;
   }
-
-  // createNameProperty(recipe, ingredientsData) {
-  //
-  // }
 }
 
 export default RecipeRepository;
