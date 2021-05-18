@@ -600,3 +600,8 @@ const sampleUsersData = [
           "amount": 2
         }
       ]
+    }
+
+  ]
+
+export default sampleUsersData;
