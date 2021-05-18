@@ -11,7 +11,22 @@ class Recipe {
   retrieveRecipeInstructions() {
     return this.instructions;
   }
-  // to determine names of ingredients needed
+
+
+  retrieveIngredientNames() {
+    const ingredientIds = this.ingredients.map(ingredient => ingredient.id);
+    const ingredientNames = [];
+    this.ingredientsData.forEach(ingredient => {
+      ingredientIds.forEach(id => {
+        if (id === ingredient.id) {
+          ingredientNames.push(ingredient.name);
+        }
+      })
+    })
+    console.log('Ingredient Names', ingredientNames);
+    return ingredientNames;
+  }
+
 
 }
 
