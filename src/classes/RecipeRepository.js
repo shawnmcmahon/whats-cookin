@@ -3,9 +3,6 @@
 class RecipeRepository {
   constructor(recipesData) {
     this.recipesData = recipesData;
-    // sampleRecipesData is an array with 6 propertys
-      // sampleRecipesData.ingredients is an array of objects
-      // each object has 2 key value pairs: id & quantity
   }
   retrieveRecipesByTag(tag) {
     tag = tag.toLowerCase();
@@ -19,7 +16,7 @@ class RecipeRepository {
 
     const matchingRecipes = [];
 
-    const foundIngredient = ingredientsData.filter(ingredient => ingredient.name.includes(lowerCaseKeyword)).map(ingredient => ingredient.id); // an array of ids
+    const foundIngredient = ingredientsData.filter(ingredient => ingredient.name.includes(lowerCaseKeyword)).map(ingredient => ingredient.id);
 
     this.recipesData.forEach(recipe => {
       if (recipe.name.toLowerCase().includes(lowerCaseKeyword)) {
