@@ -48,6 +48,12 @@ const sampleIngredientsData = [
       "id": 1145,
       "name": "unsalted butter",
       "estimatedCostInCents": 617
+    },
+    // I added this for a test in User-test.js
+    {
+      "id": 11215,
+      "name": "garlic",
+      "estimatedCostInCents": 200
     }
   ];
 
