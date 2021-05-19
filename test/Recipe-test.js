@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
 import sampleRecipesData from '../src/data/sampleRecipesData';
 import sampleIngredientsData from '../src/data/sampleIngredientsData';
-import ingredients from '../src/data/ingredients';
+//import ingredients from '../src/data/ingredients';
 
 describe('Recipe Class', () => {
   let recipe;
@@ -92,7 +92,7 @@ describe('Recipe Class', () => {
     ]);
   });
 
-  it.only('Should contain a method that calculates total recipe cost', () => {
+  it('Should contain a method that calculates total recipe cost', () => {
     const totalCost = recipe.calculateRecipeCost();
     expect(totalCost).to.eql(173.13);
   })
