@@ -6,7 +6,16 @@ class User {
     this.favoriteRecipes = [];
     this.recipesToCook = [];
   }
-  
+
+  addToFavorites(recipe) {
+    this.favoriteRecipes.push(recipe);
+  }
+
+  removeFromFavorites(recipe) {
+    const index = this.favoriteRecipes.indexOf(recipe);
+    this.favoriteRecipes.splice(index, 1);
+  }
+
 }
 
 
