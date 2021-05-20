@@ -22,29 +22,53 @@ class User {
     this.recipesToCook.push(recipe);
   }
 
+  removeFromRecipesToCook(recipe) {
+    const index = this.recipesToCook.indexOf(recipe);
+    this.recipesToCook.splice(index, 1);
+  }
+
 // Filter my favoriteRecipes by one or more tags.
 
   filterFavoriteRecipesByTags(...tags) {
-    // The rest operator treats the args being passed in as if
-    // they are in an array
-    // args can be unlimited
-    // make each tag lowercase:   tag.toLowerCase();
     const lowerCaseTags = tags.map(tag => tag.toLowerCase());
-    console.log('favs I saves', this.favoriteRecipes);
-    // Now I need to forEach over the array (lowerCaseTags)
-    // To match each tag to the tags in each recipe
-    const matchingRecipes = []
-    let results = lowerCaseTags.forEach(tag => {
+    let results = lowerCaseTags.reduce((matchingRecipes, tag) => {
       this.favoriteRecipes.forEach(recipe => {
         if (recipe.tags.includes(tag)) {
           matchingRecipes.push(recipe);
         }
       })
-    });
-    return matchingRecipes;
+      return matchingRecipes
+    }, []);
+    return results;
   }
 
 // Filter my favoriteRecipes by its name or ingredients.
+
+retrieveFavoritesByNameOrIngredient(keyword, ingredientsData) {
+
+  const lowerCaseKeyword = keyword.toLowerCase();
+
+  const matchingRecipes = [];
+
+  const foundIngredient = ingredientsData.filter(ingredient => ingredient.name.includes(lowerCaseKeyword)).map(ingredient => ingredient.id);
+
+  this.favoriteRecipes.forEach(recipe => {
+    if (recipe.name.toLowerCase().includes(lowerCaseKeyword)) {
+      matchingRecipes.push(recipe);
+    }
+    recipe.ingredients.forEach(ingredient => {
+      foundIngredient.forEach(id => {
+        if (id === ingredient.id) {
+          matchingRecipes.push(recipe);
+        }
+      })
+    })
+  });
+  console.log('anyone home?', matchingRecipes);
+  return matchingRecipes;
+}
+
+
 
 }
 
