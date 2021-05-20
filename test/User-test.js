@@ -433,7 +433,14 @@ describe('User Class', () => {
       }])
     })
 
-    it.only('Should contain a method that filters favoriteRecipes by one or more tags', () => {
+    it('Should contain a method that removes a recipe to recipesToCook', () => {
+      user.addToRecipesToCook(sampleRecipesData[0]);
+      user.removeFromRecipesToCook(sampleRecipesData[0]);
+      expect(user.recipesToCook).to.eql([]);
+    })
+
+
+    it('Should contain a method that filters favoriteRecipes by one or more tags', () => {
       user.addToFavorites(sampleRecipesData[0]);
       user.addToFavorites(sampleRecipesData[1]);
       user.addToFavorites(sampleRecipesData[2]);

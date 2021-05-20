@@ -4,34 +4,61 @@ class RecipeRepository {
   constructor(recipesData) {
     this.recipesData = recipesData;
   }
-  retrieveRecipesByTag(tag) {
-    tag = tag.toLowerCase();
-    let results = this.recipesData.filter(recipe => recipe.tags.includes(tag));
+
+  retrieveRecipesByTag(...tags) {
+    const lowerCaseTags = tags.map(tag => tag.toLowerCase());
+    let results =  lowerCaseTags.reduce((matchingRecipes, tag) => {
+      this.recipesData.forEach(recipe => {
+        if (recipe.tags.includes(tag)) {
+          matchingRecipes.push(recipe);
+        }
+      })
+      return matchingRecipes
+    }, [])
     return results
+
+
+    // let results = this.recipesData.filter(recipe => recipe.tags.includes(tag));
+    // return results
   }
 
 
-  retrieveRecipesByNameOrIngredient(keyword, ingredientsData) {
+  retrieveRecipesByNameOrIngredient(ingredientsData, ...keywords) {
+    const lowerCaseKeywords = keywords.map(keyword => keyword.toLowerCase());
+    const results = lowerCaseKeywords.reduce((matchingRecipes, keyword) => {
+      let foundIds;
+      foundIds = ingredientsData.filter(ingredient => ingredient.name.includes(keyword)).map(ingredient => ingredient.id);
+      this.recipesData.forEach(recipe => {
+        if (recipe.name.includes(keyword) && !matchingRecipes.includes(recipe)) {
+          matchingRecipes.push(recipe);
+        }
 
-    const lowerCaseKeyword = keyword.toLowerCase();
+        recipe.ingredients.forEach(ingredient => {
+          foundIds.forEach(id => {
+            if (id === ingredient.id && !matchingRecipes.includes(recipe)) {
+              matchingRecipes.push(recipe);
+            }
 
-    const matchingRecipes = [];
-
-    const foundIngredient = ingredientsData.filter(ingredient => ingredient.name.includes(lowerCaseKeyword)).map(ingredient => ingredient.id);
-
+          })
+        })
+      })
+      return matchingRecipes
+    }, []);
+    return results
     this.recipesData.forEach(recipe => {
-      if (recipe.name.toLowerCase().includes(lowerCaseKeyword)) {
+      if (recipe.name.toLowerCase().includes(keyword)) {
         matchingRecipes.push(recipe);
       }
+
       recipe.ingredients.forEach(ingredient => {
-        foundIngredient.forEach(id => {
+        foundIds.forEach(id => {
           if (id === ingredient.id) {
             matchingRecipes.push(recipe);
           }
+
         })
       })
     });
-    console.log('anyone home?', matchingRecipes);
     return matchingRecipes;
   }
 }
