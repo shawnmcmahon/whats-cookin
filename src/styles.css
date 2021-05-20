@@ -1,0 +1,61 @@
+
+body {
+  background-color: #98dc93;
+}
+
+/* -----Header----- */
+
+.main-header {
+  display: flex;
+  justify-content: center;
+  border: 2px black solid;
+  font-size: 20px;
+}
+
+.cookbook-favorite-btns-section {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  padding: 2% 30%;
+  border: 2px black solid;
+}
+
+.search-section {
+  display: flex;
+  padding: 2%;
+  justify-content: center;
+}
+
+
+/* ------Buttons------ */
+
+button {
+  padding: 2% 4%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 813px) {
+
+  body {
+    background-color: lightblue;
+  }
+
+  /* .main-header {
+    display: flex;
+    border: 2px, black;
+    background-color: blue;
+  } */
+
+}
