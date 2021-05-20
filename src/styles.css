@@ -5,14 +5,14 @@ body {
 
 /* -----Header----- */
 
-.main-header {
+.header-section {
   display: flex;
   justify-content: center;
   border: 2px black solid;
   font-size: 20px;
 }
 
-.cookbook-favorite-btns-section {
+.nav-btns-section {
   display: flex;
   justify-content: center;
   justify-content: space-around;
