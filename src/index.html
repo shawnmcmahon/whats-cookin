@@ -6,26 +6,28 @@
   </head>
   <body>
     <header class='all-header-contents'>
-      <section class='main-header'>
-        <h1>What's Cookin', <span class='user-name'>User</span>?</h1>
-      </section>
-      <section class="cookbook-favorite-btns-section">
-        <button id='cookbookBtn' class='home-cookbook-btn'>Cookbook</button>
-        <button id='favoriteRecipesBtn' class='favorite-recipes-btn'>Favorites</button>
-      </section>
-      <section class="search-section">
-        <input type="search" class='search-field' placeholder="Search Recipes">
-      </section>
+      <nav class='main-header'>
+        <section>
+          <h1>What's Cookin', <span id="userName" class='user-name'>User</span>?</h1
+        </section>
+        <section id="navBtnsSection" class="nav-btns-section">
+          <button id='cookbookBtn' class='home-cookbook-btn'>Cookbook</button>
+          <button id='favoriteRecipesBtn' class='favorite-recipes-btn'>Favorites</button>
+        </section>
+        <section class="search-section">
+          <input id="searchField" type="search" class='search-field' placeholder="Search Recipes">
+        </section>
+      </nav>
     </header>
     <main>
-      <section class='all-recipe-cards'>
-        <article class="card">
-          <img class="recipe-image" src="" alt="">
-          <button type="button" name="button">View More</button>
-          <button type="button" name="button">Cook</button>
-          <button type="button" name="button">Favorites</button>
-          <p class="recipe-name">Recipe Name</p>
-          <section class="details-background">
+      <section id="allRecipeCards" class='all-recipe-cards'>
+        <article id="recipeCard" class="recipe-card">
+          <img id="recipeImage" class="recipe-image" src="" alt="">
+          <button id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+          <button id="addToCookbookBtn" type="button" name="button">Cook</button>
+          <button id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+          <p id="recipeName" class="recipe-name">Recipe Name</p>
+          <section id="detailsBackground" class="details-background">
           </section>
         </article>
       </section>
