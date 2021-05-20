@@ -22,7 +22,6 @@ class Recipe {
         }
       })
     })
-    console.log('Ingredient Names', ingredientNames);
     return ingredientNames;
   }
 

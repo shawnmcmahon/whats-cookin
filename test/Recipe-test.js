@@ -75,7 +75,7 @@ describe('Recipe Class', () => {
     ])
   });
 
-  it('Should contain a method that determins the names of ingredients needed', () => {
+  it('Should contain a method that determines the names of ingredients needed', () => {
     const ingredientsNames = recipe.retrieveIngredientNames();
     expect(ingredientsNames).to.eql(
     [
@@ -87,14 +87,15 @@ describe('Recipe Class', () => {
     'brown sugar',
     'salt',
     'fine sea salt',
-    'semi sweet chips',
-    'unsalted butter'
+    'semi sweet chocolate chips',
+    'unsalted butter',
+    'vanilla'
     ]);
   });
 
   it('Should contain a method that calculates total recipe cost', () => {
     const totalCost = recipe.calculateRecipeCost();
-    expect(totalCost).to.eql(173.13);
+    expect(totalCost).to.eql(177.76);
   })
 
 })
