@@ -78,7 +78,6 @@ retrieveFavoritesByNameOrIngredient(ingredientsData, ...keywords) {
     return matchingRecipes;
   }
 
-
   }
 
 }
