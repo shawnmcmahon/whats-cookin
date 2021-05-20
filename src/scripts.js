@@ -1,11 +1,19 @@
 import './styles.css';
 import apiCalls from './apiCalls';
-import Recipe from './classes/Recipe'
+import domUpdates from './domUpdates'
 import RecipeRepository from './classes/RecipeRepository'
 import Users from './classes/User'
 
 let recipeRepository;
 let globalIngredientsData = {}
+
+//Query Selectors
+
+
+//Event Listeners
+window.onload = onStart();
+
+//Methods
 
 function onStartUp() {
   apiCalls.getData()
@@ -20,6 +28,25 @@ function onStartUp() {
 }
 
 
+//Function that handles the what happens when a button is clicked
+//(Consider having one big if, else conditional rather than multiple functions
+//for each button's event listener)
 
 
-console.log('Hello world');
+
+//A function that adds a recipe to the cookbook when the cook button is pressed
+function addRecipeToCookBook(event) {
+  let clickedRecipe = recipeRepository.recipeData.find(recipe => {
+    if(recipe.id === Number(event.target.dataset.id) {
+      return recipe
+    })
+  });
+  return clickedRecipe
+}
+
+
+//A function that adds a recipe to favorites when the favorite button is pressed
+
+
+//A function that adds the ingredient name to the ingredient so it can be displayed
+//on the details page
