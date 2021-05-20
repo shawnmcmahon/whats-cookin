@@ -16,10 +16,6 @@ class RecipeRepository {
       return matchingRecipes
     }, [])
     return results
-
-
-    // let results = this.recipesData.filter(recipe => recipe.tags.includes(tag));
-    // return results
   }
 
 

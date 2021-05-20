@@ -16,8 +16,6 @@ class User {
     this.favoriteRecipes.splice(index, 1);
   }
 
-  // Decide to cook a recipe that week (add to my recipesToCook)
-
   addToRecipesToCook(recipe) {
     this.recipesToCook.push(recipe);
   }
@@ -26,8 +24,6 @@ class User {
     const index = this.recipesToCook.indexOf(recipe);
     this.recipesToCook.splice(index, 1);
   }
-
-// Filter my favoriteRecipes by one or more tags.
 
   filterFavoriteRecipesByTags(...tags) {
     const lowerCaseTags = tags.map(tag => tag.toLowerCase());
@@ -42,33 +38,47 @@ class User {
     return results;
   }
 
-// Filter my favoriteRecipes by its name or ingredients.
-
-retrieveFavoritesByNameOrIngredient(keyword, ingredientsData) {
-
-  const lowerCaseKeyword = keyword.toLowerCase();
-
-  const matchingRecipes = [];
-
-  const foundIngredient = ingredientsData.filter(ingredient => ingredient.name.includes(lowerCaseKeyword)).map(ingredient => ingredient.id);
-
-  this.favoriteRecipes.forEach(recipe => {
-    if (recipe.name.toLowerCase().includes(lowerCaseKeyword)) {
-      matchingRecipes.push(recipe);
-    }
-    recipe.ingredients.forEach(ingredient => {
-      foundIngredient.forEach(id => {
-        if (id === ingredient.id) {
+retrieveFavoritesByNameOrIngredient(ingredientsData, ...keywords) {
+  {
+    const lowerCaseKeywords = keywords.map(keyword => keyword.toLowerCase());
+    const results = lowerCaseKeywords.reduce((matchingRecipes, keyword) => {
+      let foundIds;
+      foundIds = ingredientsData.filter(ingredient => ingredient.name.includes(keyword)).map(ingredient => ingredient.id);
+      this.favoriteRecipes.forEach(recipe => {
+        if (recipe.name.includes(keyword) && !matchingRecipes.includes(recipe)) {
           matchingRecipes.push(recipe);
         }
+
+        recipe.ingredients.forEach(ingredient => {
+          foundIds.forEach(id => {
+            if (id === ingredient.id && !matchingRecipes.includes(recipe)) {
+              matchingRecipes.push(recipe);
+            }
+
+          })
+        })
       })
-    })
-  });
-  console.log('anyone home?', matchingRecipes);
-  return matchingRecipes;
-}
+      return matchingRecipes
+    }, []);
+    return results
+    this.favoriteRecipes.forEach(recipe => {
+      if (recipe.name.toLowerCase().includes(keyword)) {
+        matchingRecipes.push(recipe);
+      }
 
+      recipe.ingredients.forEach(ingredient => {
+        foundIds.forEach(id => {
+          if (id === ingredient.id) {
+            matchingRecipes.push(recipe);
+          }
 
+        })
+      })
+    });
+    return matchingRecipes;
+  }
+
+  }
 
 }
 
