@@ -41,21 +41,21 @@ class RecipeRepository {
       return matchingRecipes
     }, []);
     return results
-    this.recipesData.forEach(recipe => {
-      if (recipe.name.toLowerCase().includes(keyword)) {
-        matchingRecipes.push(recipe);
-      }
-
-      recipe.ingredients.forEach(ingredient => {
-        foundIds.forEach(id => {
-          if (id === ingredient.id) {
-            matchingRecipes.push(recipe);
-          }
-
-        })
-      })
-    });
-    return matchingRecipes;
+    // this.recipesData.forEach(recipe => {
+    //   if (recipe.name.toLowerCase().includes(keyword)) {
+    //     matchingRecipes.push(recipe);
+    //   }
+    //
+    //   recipe.ingredients.forEach(ingredient => {
+    //     foundIds.forEach(id => {
+    //       if (id === ingredient.id) {
+    //         matchingRecipes.push(recipe);
+    //       }
+    //
+    //     })
+    //   })
+    // });
+    // return matchingRecipes;
   }
 }
 
