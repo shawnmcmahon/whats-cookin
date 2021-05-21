@@ -32,11 +32,13 @@ body {
 
 button {
   padding: 2% 4%;
+  border: none;
+  border-radius: 30px 30px 30px 30px;
 }
 
 
 
-
+/*  */
 
 
 

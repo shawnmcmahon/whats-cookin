@@ -11,12 +11,13 @@ let globalIngredientsData = {}
 
 
 //Event Listeners
-window.onload = onStart();
+window.onload = onStartUp();
 
 //Methods
 
 function onStartUp() {
   apiCalls.getData()
+    // research this more...do we need .then?
     .then(([userData, ingredientsData, recipeData]) => {
       user = new User(userData[(Math.floor(Math.random() * userData.length))]);
       globalIngredientsData = ingredientsData;
@@ -37,9 +38,9 @@ function onStartUp() {
 //A function that adds a recipe to the cookbook when the cook button is pressed
 function addRecipeToCookBook(event) {
   let clickedRecipe = recipeRepository.recipeData.find(recipe => {
-    if(recipe.id === Number(event.target.dataset.id) {
+    if(recipe.id === Number(event.target.dataset.id)) {
       return recipe
-    })
+    }
   });
   return clickedRecipe
 }

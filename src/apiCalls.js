@@ -20,6 +20,8 @@ const checkForError = response => {
 }
 
 function getData() {
+  // Wait until all these resolve before moving to the next thing
+  // Promise.all takes an array of ansynchronous functions as an arg
   return Promise.all([retrieveUserData(), retrieveIngredientsData(), retrieveRecipeData()])
 }
 
