@@ -53,8 +53,6 @@ function onStartUp() {
 //   });
 //   return clickedRecipe
 // }
-
-
 //A function that adds a recipe to favorites when the favorite button is pressed
 
 
