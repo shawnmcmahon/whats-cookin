@@ -1,8 +1,18 @@
 import Recipe from './classes/Recipe'
 
+
+const detailsBtn = document.querySelector('.viewMoreViewLessBtn');
+const addToCookbookBtn = document.querySelector('.addToCookbookBtn');
+const addToFavoritesBtn = document.querySelector('.addToFavoritesBtn');
+
+
 let domUpdates = {
   //1. A function that greets a User that updates the headline with their username
-
+  greetUser(user) {
+    const greeting = document.querySelector('.greeting');
+    greeting.innerHTML =
+      'What\'s Cooking,' + user.name.split(' ')[0] + ' ' + user.name.split(' ')[1][0] + '?';
+  }
 
   //2. A function that populates all recipe cards to the home scren
 
@@ -37,7 +47,7 @@ let domUpdates = {
   //keywords the search bar. Should search through recipe name, ingredient names, or tags
 
 
-  
+
 
 }
 

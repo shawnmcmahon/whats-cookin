@@ -8,10 +8,10 @@ const retrieveIngredientsData = () => fetch('http://localhost:3001/api/v1/ingred
   .catch(error => console.log(`Ingredients API Error: ${error.message}`))
 
 const retrieveRecipeData = () => fetch('http://localhost:3001/api/v1/recipes')
-  .then(reponse = checkForError(response))
+  .then(response => checkForError(response))
   .catch(error =>  console.log(`Recipe API Error: ${error.message}`))
 
-const checkForError = response => {
+const checkForError = (response) => {
   if (!response.ok) {
     throw new Error('Something went wrong, please try again,')
   } else {
@@ -20,6 +20,7 @@ const checkForError = response => {
 }
 
 function getData() {
+  console.log(Promise.all([retrieveUserData(), retrieveIngredientsData(), retrieveRecipeData()]));
   return Promise.all([retrieveUserData(), retrieveIngredientsData(), retrieveRecipeData()])
 }
 

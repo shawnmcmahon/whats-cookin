@@ -2,16 +2,21 @@ import './styles.css';
 import apiCalls from './apiCalls';
 import domUpdates from './domUpdates'
 import RecipeRepository from './classes/RecipeRepository'
-import Users from './classes/User'
+import User from './classes/User'
 
-let recipeRepository;
+let recipeRepository, user;
 let globalIngredientsData = {}
 
 //Query Selectors
+const favoriteBtn = document.querySelector('.favoriteRecipesBtn');
+const cookbookBtn = document.querySelector('.cookbookBtn');
+const searchInput = document.querySelector('#searchField');
+//const allRecipeCardsBackground = document.querySelector('.allRecipeCards');
+//const detailsBackground = document.querySelector('.detailsBackground');
 
 
 //Event Listeners
-window.onload = onStart();
+window.onload = onStartUp();
 
 //Methods
 
@@ -24,6 +29,7 @@ function onStartUp() {
       //domUpdates function that populates all recipe cards to the home page
 
       //domUpdates function that will greet the user by updating the headline
+      domUpdates.greetUser(user);
     })
 }
 
@@ -35,14 +41,14 @@ function onStartUp() {
 
 
 //A function that adds a recipe to the cookbook when the cook button is pressed
-function addRecipeToCookBook(event) {
-  let clickedRecipe = recipeRepository.recipeData.find(recipe => {
-    if(recipe.id === Number(event.target.dataset.id) {
-      return recipe
-    })
-  });
-  return clickedRecipe
-}
+// function addRecipeToCookBook(event) {
+//   let clickedRecipe = recipeRepository.recipeData.find(recipe => {
+//     if (recipe.id === Number(event.target.dataset.id) {
+//       return recipe
+//     })
+//   });
+//   return clickedRecipe
+// }
 
 
 //A function that adds a recipe to favorites when the favorite button is pressed
