@@ -22,10 +22,14 @@ window.onload = onStartUp();
 
 function onStartUp() {
   apiCalls.getData()
-    .then(([userData, ingredientsData, recipeData]) => {
-      user = new User(userData[(Math.floor(Math.random() * userData.length))]);
-      globalIngredientsData = ingredientsData;
-      recipeRepository = new RecipeRepository(recipeData)
+    .then((promise) => {
+      //console.log('user data', userData);
+      console.log('the promise', promise)
+      //user = new User(userData[(Math.floor(Math.random() * userData.length))]);
+      user = new User(promise[0]['usersData'][0])
+      console.log('user', user)
+      globalIngredientsData = promise[1]['ingredientsData'];
+      recipeRepository = new RecipeRepository(promise[2]['recipeData'])
       //domUpdates function that populates all recipe cards to the home page
 
       //domUpdates function that will greet the user by updating the headline
