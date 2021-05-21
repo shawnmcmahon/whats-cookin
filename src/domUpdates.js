@@ -21,7 +21,6 @@ let domUpdates = {
   //when the favorite button is clicked.
 
 
-
   //4. A function that populates the favorites recipes cards to the screen and
   //removes all recipe cards.
   //If no favorites available, switch the text of the favorite button from
