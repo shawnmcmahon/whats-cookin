@@ -7,6 +7,9 @@ const addToFavoritesBtn = document.querySelector('.addToFavoritesBtn');
 const greeting = document.querySelector('.greeting');
 const allRecipeCards = document.querySelector('#allRecipeCards');
 const detailsBackground = document.querySelector('#detailsBackground')
+const ingredientsTag = document.querySelector('.ingredients');
+const instructionsTag = document.querySelector('.instructions');
+
 
 // Event Listeners
 
@@ -31,7 +34,11 @@ let domUpdates = {
           <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
-        <section id="detailsBackground" class="details-background">
+        <section id="detailsBackground" class="details-background hidden">
+        <p id="ingredientsLabel" class="label">Ingredients</p>
+        <p id="ingredients" class="details-text"></p>
+        <p id="instructionsLabel" class="label">instructions</p>
+        <p id="instructions" class="details-text"></p>
         </section>
       </article>
       `)
@@ -101,24 +108,9 @@ let domUpdates = {
     })
       if(!event.target.classList.contains('display-instructions')) {
         event.target.classList.add('display-instructions');
-        detailsBackground.innerHTML =
-        `
-        <p id="ingredientsLabel" class="label">Ingredients</p>
-        <p id="ingredients" class="details-text"></p>
-        <p id="instructionsLabel" class="label">Instructions</p>
-        <p id="instructions" class="details-text"></p>
-        `
-        let ingredientsTag = document.querySelector('.ingredients');
-        let instructionsTag = document.querySelector('.instructions');
-
         clickedRecipe.ingredients.forEach(ingredient => {
-          ingredientsTag.insertAdjacentHTML('afterbegin',
-        `<p data-id=${clickedRecipe.id} id="instructionsLabel" class="label">${clickedRecipe.ingredients.id}, ${clicked.quantity.amount}, ${ingredient.quantity.unit}</p>` )
-        })
-        clickedRecipe.instructions.forEach(ingredient => {
-          instructionsTag.insertAdjacentHTML('afterbegin',
-        `  <p data-id=${clickedRecipe.id}id="instructions" class="details-text"><${clickedRecipe.number}: ${clickedRecipe.instruction}/p>`)
-        })
+          ingredientsTag.insertAdjacentHTML('afterbegin', `${ingredient.id}, ${ingredient.quantity.amount}, ${ingredient.quantity.unit}`)
+        });
       //Have a function the inputs the instructions on the detailsBackground
       } else if (event.target.classList.contains('display-instructions')) {
         event.target.classList.remove('display-instructions');

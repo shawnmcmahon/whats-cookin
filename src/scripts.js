@@ -90,3 +90,16 @@ function displayInstructionsButton(event) {
 
 //A function that adds the ingredient name to the ingredient so it can be displayed
 //on the details page
+function addNameProperty(recipe) {
+  let ingredientInfo = recipe.ingredients.map(ingredient => {
+    const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
+    return {
+      name: globalIngredientsData[index].name,
+      id: ingredient.id,
+      quantity: {
+        amount: ingredient.quantity.amount, 
+        unit: ingredient.quantity.unit
+      }
+    }
+  })
+}
