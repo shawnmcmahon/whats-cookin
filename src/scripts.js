@@ -18,8 +18,9 @@ const allRecipeCards = document.querySelector('#allRecipeCards');
 
 //Event Listeners
 window.onload = onStartUp();
-allRecipeCards.addEventListener('click', function(event) {
-  determineButton(event);
+
+allRecipeCards.addEventListener('click', function() {
+  addToFavoritesButton(event);
 })
 
 
@@ -43,9 +44,11 @@ function onStartUp() {
     })
 }
 
-function determineButton(event) {
-  if (event.target.id === ) {
-
+function addToFavoritesButton(event) {
+  if (event.target.classList.contains('favorite-recipe')) {
+    domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
+  } else if(!event.target.classList.contains('favorite-recipe')) {
+    domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
   }
 }
 

@@ -10,8 +10,6 @@ const allRecipeCards = document.querySelector('#allRecipeCards');
 
 // Event Listeners
 
-
-
 let domUpdates = {
   //1. A function that greets a User that updates the headline with their username
   greetUser(user) {
@@ -30,7 +28,7 @@ let domUpdates = {
         <div class="recipe-card-btn-section">
           <button id="viewMoreViewLessBtn" type="button" name="button">View More</button>
           <button id="addToCookbookBtn" type="button" name="button">Cook</button>
-          <button id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+          <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
         <section id="detailsBackground" class="details-background">
@@ -47,14 +45,25 @@ let domUpdates = {
   //3. A function that adds the recipe card to the favorite recipes array
   //when the favorite button is clicked.
   // adding recipe to user.favoriteRecipes
-  addToFavoriteRecipes(event, recipes) {
-
-    const favoriteRecipe = recipes.recipeData.find(recipe => {
-      if (recipe.id === event.target.dataset.id) {
+  addToFavoriteRecipes(event, recipes, user) {
+    // If recipe doesn't contain favorite class...add favorite class
+    // If it does add it to favorites
+    // Click button again and it removes from favorites
+    const favoriteRecipe = recipes.recipesData.find(recipe => {
+      if (recipe.id === Number(event.target.dataset.id)) {
         return recipe;
       }
     })
-    user.addToFavorites(favoriteRecipe);
+      if(!event.target.classList.contains('favorite-recipe')) {
+        event.target.classList.add('favorite-recipe');
+        user.addToFavorites(favoriteRecipe);
+      } else if (event.target.classList.contains('favorite-recipe')) {
+        event.target.classList.remove('favorite-recipe');
+        user.removeFromFavorites(favoriteRecipe);
+      }
+
+      console.log("USER HERE", user);
+
   }
 
 

@@ -106,6 +106,10 @@ div > button {
   font-size: 22px;
 }
 
+.favorite-recipe {
+  background-color: red;
+}
+
 .hidden {
   display: none;
 }
