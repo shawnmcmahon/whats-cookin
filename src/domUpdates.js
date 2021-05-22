@@ -18,9 +18,7 @@ let domUpdates = {
   //2. A function that populates all recipe cards to the home scren
 
   displayRecipeCards(recipes) {
-    console.log('HERE HERE HERE', recipes);
     allRecipeCards.innerHTML = ' ';
-    // Go into all the recipes
     recipes.recipesData.forEach(recipe => {
       allRecipeCards.insertAdjacentHTML('afterbegin', `
       <article id="recipeCard" class="recipe-card">
@@ -40,9 +38,6 @@ let domUpdates = {
       </article>
       `)
     })
-    // for each recipe, insert HTML
-    // the entire card object details interpolated dynamically
-
   }
 
   //3. A function that adds the recipe card to the favorite recipes array

@@ -61,11 +61,17 @@ div > button {
 
 /*-----Main------*/
 
+.all-recipe-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .recipe-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 3px solid #000000;
+  margin: 2%;
   width: 600px;
 }
 
