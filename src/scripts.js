@@ -11,12 +11,17 @@ let globalIngredientsData = {}
 const favoriteBtn = document.querySelector('.favoriteRecipesBtn');
 const cookbookBtn = document.querySelector('.cookbookBtn');
 const searchInput = document.querySelector('#searchField');
+const allRecipeCards = document.querySelector('#allRecipeCards');
 //const allRecipeCardsBackground = document.querySelector('.allRecipeCards');
 //const detailsBackground = document.querySelector('.detailsBackground');
 
 
 //Event Listeners
 window.onload = onStartUp();
+allRecipeCards.addEventListener('click', function(event) {
+  determineButton(event);
+})
+
 
 //Methods
 
@@ -35,8 +40,13 @@ function onStartUp() {
       //domUpdates function that will greet the user by updating the headline
       domUpdates.greetUser(user);
       domUpdates.displayRecipeCards(recipeRepository)
-      console.log('4444444444', recipeRepository);
     })
+}
+
+function determineButton(event) {
+  if (event.target.id === ) {
+
+  }
 }
 
 

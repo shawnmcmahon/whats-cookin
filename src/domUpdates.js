@@ -5,7 +5,11 @@ const detailsBtn = document.querySelector('.viewMoreViewLessBtn');
 const addToCookbookBtn = document.querySelector('.addToCookbookBtn');
 const addToFavoritesBtn = document.querySelector('.addToFavoritesBtn');
 const greeting = document.querySelector('.greeting');
-const allRecipeCards = document.querySelector('#allRecipeCards')
+const allRecipeCards = document.querySelector('#allRecipeCards');
+
+
+// Event Listeners
+
 
 
 let domUpdates = {
@@ -38,10 +42,20 @@ let domUpdates = {
       </article>
       `)
     })
-  }
+  },
 
   //3. A function that adds the recipe card to the favorite recipes array
   //when the favorite button is clicked.
+  // adding recipe to user.favoriteRecipes
+  addToFavoriteRecipes(event, recipes) {
+
+    const favoriteRecipe = recipes.recipeData.find(recipe => {
+      if (recipe.id === event.target.dataset.id) {
+        return recipe;
+      }
+    })
+    user.addToFavorites(favoriteRecipe);
+  }
 
 
   //4. A function that populates the favorites recipes cards to the screen and
