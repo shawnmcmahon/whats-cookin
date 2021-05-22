@@ -110,6 +110,10 @@ div > button {
   background-color: red;
 }
 
+.cookbook-recipe {
+  background-color: red;
+}
+
 .hidden {
   display: none;
 }

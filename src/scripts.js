@@ -21,6 +21,7 @@ window.onload = onStartUp();
 
 allRecipeCards.addEventListener('click', function() {
   addToFavoritesButton(event);
+  addToCookbookButton(event);
 })
 
 
@@ -52,6 +53,13 @@ function addToFavoritesButton(event) {
   }
 }
 
+function addToCookbookButton(event) {
+  if (event.target.classList.contains('favorite-recipe')) {
+    domUpdates.addToCookbook(event, recipeRepository, user);
+  } else if(!event.target.classList.contains('favorite-recipe')) {
+    domUpdates.addToCookbook(event, recipeRepository, user)
+  }
+}
 
 //Function that handles the what happens when a button is clicked
 //(Consider having one big if, else conditional rather than multiple functions

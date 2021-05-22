@@ -26,8 +26,8 @@ let domUpdates = {
       <article id="recipeCard" class="recipe-card">
         <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
         <div class="recipe-card-btn-section">
-          <button id="viewMoreViewLessBtn" type="button" name="button">View More</button>
-          <button id="addToCookbookBtn" type="button" name="button">Cook</button>
+          <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+          <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
           <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
@@ -62,20 +62,31 @@ let domUpdates = {
         user.removeFromFavorites(favoriteRecipe);
       }
 
-      console.log("USER HERE", user);
-
-  }
-
-
+  },
   //4. A function that populates the favorites recipes cards to the screen and
   //removes all recipe cards.
   //If no favorites available, switch the text of the favorite button from
   // Fav -> No Favs
 
+  addToCookbook(event, recipes, user) {
 
   //5. A function adds the recipe card to the cookbook array when the cook
   // button is clicked.
+  const recipeToBeCooked = recipes.recipesData.find(recipe => {
+    if (recipe.id === Number(event.target.dataset.id)) {
+      return recipe;
+    }
+  })
+    if(!event.target.classList.contains('cookbook-recipe')) {
+      event.target.classList.add('cookbook-recipe');
+      user.addToRecipesToCook(recipeToBeCooked);
+    } else if (event.target.classList.contains('fcookbook-recipe')) {
+      event.target.classList.remove('cookbook-recipe');
+      user.removeFromRecipesToCook(recipeToBeCooked);
+    }
 
+    console.log('COOKBOOK USER', user);
+  }
   //6. A function that populates the cookbook recipes cards to the screen and
   //removes all recipe cards.
   //If no recipes in the cookbook available, switch the text of the cookbook button from
