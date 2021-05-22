@@ -550,7 +550,7 @@ describe('User Class', () => {
       }])
     })
 
-    it.only('Should contain a method that retrieves a recipes from favorite recipes', () => {
+    it('Should contain a method that retrieves a recipes from favorite recipes', () => {
       user.addToFavorites(sampleRecipesData[0]);
       user.addToFavorites(sampleRecipesData[1]);
       const favoriteRecipes = user.retrieveFavoritesByNameOrIngredient(sampleIngredientsData, "Chocolate", "Garlic")

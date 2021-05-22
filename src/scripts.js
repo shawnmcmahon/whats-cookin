@@ -22,6 +22,7 @@ window.onload = onStartUp();
 allRecipeCards.addEventListener('click', function() {
   addToFavoritesButton(event);
   addToCookbookButton(event);
+  displayInstructionsButton(event);
 })
 
 
@@ -58,6 +59,14 @@ function addToCookbookButton(event) {
     domUpdates.addToCookbook(event, recipeRepository, user);
   } else if(!event.target.classList.contains('favorite-recipe')) {
     domUpdates.addToCookbook(event, recipeRepository, user)
+  }
+}
+
+function displayInstructionsButton(event) {
+  if (event.target.classList.contains('display-instructions')) {
+    domUpdates.displayInstructions(event, recipeRepository);
+  } else if(!event.target.classList.contains('display-instructions')) {
+    domUpdates.displayInstructions(event, recipeRepository);
   }
 }
 

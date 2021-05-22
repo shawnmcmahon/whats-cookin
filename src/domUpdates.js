@@ -6,7 +6,7 @@ const addToCookbookBtn = document.querySelector('.addToCookbookBtn');
 const addToFavoritesBtn = document.querySelector('.addToFavoritesBtn');
 const greeting = document.querySelector('.greeting');
 const allRecipeCards = document.querySelector('#allRecipeCards');
-
+const detailsBackground = document.querySelector('#detailsBackground')
 
 // Event Listeners
 
@@ -32,10 +32,6 @@ let domUpdates = {
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
         <section id="detailsBackground" class="details-background">
-          <p id="ingredientsLabel" class="label">Ingredients</p>
-          <p id="ingredients" class="details-text"> ${recipe.ingredients}</p>
-          <p id="instructionsLabel" class="label">Instructions</p>
-          <p id="instructions" class="details-text">${recipe.instructions}</p>
         </section>
       </article>
       `)
@@ -86,7 +82,7 @@ let domUpdates = {
     }
 
     console.log('COOKBOOK USER', user);
-  }
+  },
   //6. A function that populates the cookbook recipes cards to the screen and
   //removes all recipe cards.
   //If no recipes in the cookbook available, switch the text of the cookbook button from
@@ -97,7 +93,41 @@ let domUpdates = {
   // recipe instructions background when you press the "details" button
   // Button label should toggle to View Less when ingredients are activated
   // (Should toggle back to normal view without extra information when button is clicked again)
+  displayInstructions(event, recipes) {
+    const clickedRecipe = recipes.recipesData.find(recipe => {
+      if (recipe.id === Number(event.target.dataset.id)) {
+        return recipe;
+      }
+    })
+      if(!event.target.classList.contains('display-instructions')) {
+        event.target.classList.add('display-instructions');
+        detailsBackground.innerHTML =
+        `
+        <p id="ingredientsLabel" class="label">Ingredients</p>
+        <p id="ingredients" class="details-text"></p>
+        <p id="instructionsLabel" class="label">Instructions</p>
+        <p id="instructions" class="details-text"></p>
+        `
+        let ingredientsTag = document.querySelector('.ingredients');
+        let instructionsTag = document.querySelector('.instructions');
 
+        clickedRecipe.ingredients.forEach(ingredient => {
+          ingredientsTag.insertAdjacentHTML('afterbegin',
+        `<p data-id=${clickedRecipe.id} id="instructionsLabel" class="label">${clickedRecipe.ingredients.id}, ${clicked.quantity.amount}, ${ingredient.quantity.unit}</p>` )
+        })
+        clickedRecipe.instructions.forEach(ingredient => {
+          instructionsTag.insertAdjacentHTML('afterbegin',
+        `  <p data-id=${clickedRecipe.id}id="instructions" class="details-text"><${clickedRecipe.number}: ${clickedRecipe.instruction}/p>`)
+        })
+      //Have a function the inputs the instructions on the detailsBackground
+      } else if (event.target.classList.contains('display-instructions')) {
+        event.target.classList.remove('display-instructions');
+        detailsBackground.innerHTML = ' ';
+
+      //Have a function the inputs the instructions on the detailsBackground
+      }
+
+  }
 
   //8. A function that displays recipe on the screen when a user types in
   //keywords the search bar. Should search through recipe name, ingredient names, or tags
