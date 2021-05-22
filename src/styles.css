@@ -61,11 +61,18 @@ div > button {
 
 /*-----Main------*/
 
+.all-recipe-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .recipe-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 3px solid #000000;
+  margin: 2%;
+  height: auto;
   width: 600px;
 }
 
@@ -89,6 +96,7 @@ div > button {
   display: flex;
   flex-direction: column;
   margin-bottom: 2%;
+  height: auto;
 }
 
 .label {
@@ -98,6 +106,14 @@ div > button {
 
 .details-text {
   font-size: 22px;
+}
+
+.favorite-recipe {
+  background-color: red;
+}
+
+.cookbook-recipe {
+  background-color: red;
 }
 
 .hidden {

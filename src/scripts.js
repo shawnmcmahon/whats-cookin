@@ -11,12 +11,20 @@ let globalIngredientsData = {}
 const favoriteBtn = document.querySelector('.favoriteRecipesBtn');
 const cookbookBtn = document.querySelector('.cookbookBtn');
 const searchInput = document.querySelector('#searchField');
+const allRecipeCards = document.querySelector('#allRecipeCards');
 //const allRecipeCardsBackground = document.querySelector('.allRecipeCards');
 //const detailsBackground = document.querySelector('.detailsBackground');
 
 
 //Event Listeners
 window.onload = onStartUp();
+
+allRecipeCards.addEventListener('click', function() {
+  addToFavoritesButton(event);
+  addToCookbookButton(event);
+  displayInstructionsButton(event);
+})
+
 
 //Methods
 
@@ -34,9 +42,33 @@ function onStartUp() {
 
       //domUpdates function that will greet the user by updating the headline
       domUpdates.greetUser(user);
+      domUpdates.displayRecipeCards(recipeRepository)
     })
 }
 
+function addToFavoritesButton(event) {
+  if (event.target.classList.contains('favorite-recipe')) {
+    domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
+  } else if(!event.target.classList.contains('favorite-recipe')) {
+    domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
+  }
+}
+
+function addToCookbookButton(event) {
+  if (event.target.classList.contains('favorite-recipe')) {
+    domUpdates.addToCookbook(event, recipeRepository, user);
+  } else if(!event.target.classList.contains('favorite-recipe')) {
+    domUpdates.addToCookbook(event, recipeRepository, user)
+  }
+}
+
+function displayInstructionsButton(event) {
+  if (event.target.classList.contains('display-instructions')) {
+    domUpdates.displayInstructions(event, recipeRepository);
+  } else if(!event.target.classList.contains('display-instructions')) {
+    domUpdates.displayInstructions(event, recipeRepository);
+  }
+}
 
 //Function that handles the what happens when a button is clicked
 //(Consider having one big if, else conditional rather than multiple functions
@@ -58,3 +90,16 @@ function onStartUp() {
 
 //A function that adds the ingredient name to the ingredient so it can be displayed
 //on the details page
+function addNameProperty(recipe) {
+  let ingredientInfo = recipe.ingredients.map(ingredient => {
+    const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
+    return {
+      name: globalIngredientsData[index].name,
+      id: ingredient.id,
+      quantity: {
+        amount: ingredient.quantity.amount, 
+        unit: ingredient.quantity.unit
+      }
+    }
+  })
+}

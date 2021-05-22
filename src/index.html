@@ -8,12 +8,12 @@
     <header class='all-header-contents'>
       <nav class='main-header'>
         <section id="headerSection" class="header-section">
-          <h1 id="greeting" class="greeting" >What's Cookin', <span id="userName" class='user-name'>User</span>?</h1>
+          <h1 id="greeting" class="greeting" >What's Cookin', User?</h1>
         </section>
         <section id="navBtnsSection" class="nav-btns-section">
           <button id="homeBtn" class="home-btn hidden" type="button" name="button">Home</button>
           <button id='cookbookBtn' class='home-cookbook-btn'>Cookbook</button>
-          <button id='favoriteRecipesBtn' class='favorite-recipes-btn'>Favorites</button>
+          <button id='viewFavoriteRecipesBtn' class='favorite-recipes-btn'>Favorites</button>
         </section>
         <section class="search-section">
           <input id="searchField" type="search" class='search-field' placeholder="Search Recipes">
@@ -23,7 +23,7 @@
     <main>
       <section id="allRecipeCards" class='all-recipe-cards'>
         <article id="recipeCard" class="recipe-card">
-          <img id="recipeImage" class="recipe-image" src="" alt="">
+          <img id="recipeImage" class="recipe-image" src="" alt="Recipe Image">
           <div class="recipe-card-btn-section">
             <button id="viewMoreViewLessBtn" type="button" name="button">View More</button>
             <button id="addToCookbookBtn" type="button" name="button">Cook</button>
@@ -31,10 +31,6 @@
           </div>
           <p id="recipeName" class="recipe-name">Recipe Name</p>
           <section id="detailsBackground" class="details-background">
-            <p id="ingredientsLabel" class="label">Ingredients</p>
-            <p id="ingredients" class="details-text"> - 4, Cups, Strawberries</p>
-            <p id="instructionsLabel" class="label">Instructions</p>
-            <p id="instructions" class="details-text">1. In a large mixing bowl, whisk together the ingredients....</p>
           </section>
         </article>
       </section>
