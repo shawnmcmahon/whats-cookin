@@ -34,6 +34,8 @@ function onStartUp() {
 
       //domUpdates function that will greet the user by updating the headline
       domUpdates.greetUser(user);
+      domUpdates.displayRecipeCards(recipeRepository)
+      console.log('4444444444', recipeRepository);
     })
 }
 

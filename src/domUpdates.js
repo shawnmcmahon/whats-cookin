@@ -5,6 +5,7 @@ const detailsBtn = document.querySelector('.viewMoreViewLessBtn');
 const addToCookbookBtn = document.querySelector('.addToCookbookBtn');
 const addToFavoritesBtn = document.querySelector('.addToFavoritesBtn');
 const greeting = document.querySelector('.greeting');
+const allRecipeCards = document.querySelector('#allRecipeCards')
 
 
 let domUpdates = {
@@ -12,10 +13,37 @@ let domUpdates = {
   greetUser(user) {
     greeting.innerHTML =
       'What\'s Cooking, ' + user.name + '?';
-  }
+  },
 
   //2. A function that populates all recipe cards to the home scren
 
+  displayRecipeCards(recipes) {
+    console.log('HERE HERE HERE', recipes);
+    allRecipeCards.innerHTML = ' ';
+    // Go into all the recipes
+    recipes.recipesData.forEach(recipe => {
+      allRecipeCards.insertAdjacentHTML('afterbegin', `
+      <article id="recipeCard" class="recipe-card">
+        <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
+        <div class="recipe-card-btn-section">
+          <button id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+          <button id="addToCookbookBtn" type="button" name="button">Cook</button>
+          <button id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+        </div>
+        <p id="recipeName" class="recipe-name">${recipe.name}</p>
+        <section id="detailsBackground" class="details-background">
+          <p id="ingredientsLabel" class="label">Ingredients</p>
+          <p id="ingredients" class="details-text"> ${recipe.ingredients}</p>
+          <p id="instructionsLabel" class="label">Instructions</p>
+          <p id="instructions" class="details-text">${recipe.instructions}</p>
+        </section>
+      </article>
+      `)
+    })
+    // for each recipe, insert HTML
+    // the entire card object details interpolated dynamically
+
+  }
 
   //3. A function that adds the recipe card to the favorite recipes array
   //when the favorite button is clicked.
