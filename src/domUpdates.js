@@ -70,6 +70,7 @@ let domUpdates = {
         event.target.classList.remove('favorite-recipe');
         user.removeFromFavorites(favoriteRecipe);
       }
+      console.log('Favorite Clicked', user);
 
   },
   //4. A function that populates the favorites recipes cards to the screen and
@@ -94,7 +95,7 @@ let domUpdates = {
       user.removeFromRecipesToCook(recipeToBeCooked);
     }
 
-    console.log('COOKBOOK USER', user);
+    console.log('COOKBOOK CLICKED', user);
   },
   //6. A function that populates the cookbook recipes cards to the screen and
   //removes all recipe cards.
@@ -114,19 +115,22 @@ let domUpdates = {
     })
     // const recipeWithIngredientNames = addNameProperty(clickedRecipe);
 
-      if(!detailsBackground.classList.contains('hidden')) {
-        detailsBackground.classList.add('hidden');
+      if(detailsBackground.classList.contains('hidden')) {
+        event.target.classList.add('display-instructions');
+        detailsBackground.classList.remove('hidden');
+
         // clickedRecipe.ingredients.forEach(ingredient => {
         //   console.log(ingredient)
         //   ingredientsTag.insertAdjacentHTML('afterbegin', `${ingredient.id}, ${ingredient.quantity.amount}, ${ingredient.quantity.unit}`)
         // });
 
-    } else if (detailsBackground.classList.contains('hidden')) {
-        detailsBackground.classList.remove('hidden');
+    } else if (!detailsBackground.classList.contains('hidden')) {
+        event.target.classList.remove('display-instructions');
+        detailsBackground.classList.add('hidden');
 
 
       }
-  //
+    console.log('VIEWMORE CLICKED');
    }
 
   //8. A function that displays recipe on the screen when a user types in

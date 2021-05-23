@@ -58,10 +58,12 @@ function addToFavoritesButton(event) {
 }
 
 function addToCookbookButton(event) {
-  if (recipeCard.classList.contains('favorite-recipe')) {
-    domUpdates.addToCookbook(event, recipeRepository, user);
-  } else if(!recipeCard.classList.contains('favorite-recipe')) {
-    domUpdates.addToCookbook(event, recipeRepository, user)
+  if (event.target.closest('button').id === 'addToCookbookBtn') {
+    if (recipeCard.classList.contains('favorite-recipe')) {
+      domUpdates.addToCookbook(event, recipeRepository, user);
+    } else if(!recipeCard.classList.contains('favorite-recipe')) {
+      domUpdates.addToCookbook(event, recipeRepository, user)
+    }
   }
 }
 
@@ -95,7 +97,7 @@ function displayInstructionsButton(event) {
 
 //A function that adds the ingredient name to the ingredient so it can be displayed
 //on the details page
-function addNameProperty(recipe) {
+export const addNameProperty = recipe => {
   let ingredientInfo = recipe.ingredients.map(ingredient => {
     const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
     return {
@@ -107,4 +109,5 @@ function addNameProperty(recipe) {
       }
     }
   })
+  return ingredientsInfo;
 }

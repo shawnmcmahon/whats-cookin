@@ -116,6 +116,10 @@ div > button {
   background-color: red;
 }
 
+.display-instructions {
+  background-color: red;
+}
+
 .hidden {
   display: none;
 }
