@@ -12,7 +12,7 @@ const ingredientsTag = document.querySelector('#ingredients');
 const instructionsTag = document.querySelector('#instructions');
 
 const recipeCard = document.querySelector('#recipeCard');
-
+const viewMoreViewLessBtn = document.querySelector('#viewMoreViewLessBtn');
 
 
 
@@ -123,7 +123,28 @@ let domUpdates = {
   //removes all recipe cards.
   //If no recipes in the cookbook available, switch the text of the cookbook button from
   // Cookbook -> No Recipes
-
+  displayCookbookRecipeCards(recipes, user) {
+    allRecipeCards.innerHTML = ' ';
+    user.recipesToCook.forEach(recipe => {
+      allRecipeCards.insertAdjacentHTML('afterbegin', `
+      <article id="recipeCard" class="recipe-card">
+        <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
+        <div class="recipe-card-btn-section">
+          <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+          <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
+          <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+        </div>
+        <p id="recipeName" class="recipe-name">${recipe.name}</p>
+        <section id="detailsBackground" class="details-background hidden">
+          <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
+          <p data-id=${recipe.id} id="ingredients" class="details-text">${recipe.ingredients}</p>
+          <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
+          <p data-id=${recipe.id} id="instructions" class="details-text">${recipe.instructions}</p>
+        </section>
+      </article>
+      `)
+    })
+  },
 
   //7. A function that inserts the recipe instructions and ingredients into the
   // recipe instructions background when you press the "details" button
@@ -137,18 +158,18 @@ let domUpdates = {
     })
     // const recipeWithIngredientNames = addNameProperty(clickedRecipe);
 
-      if(detailsBackground.classList.contains('hidden')) {
-        event.target.classList.add('display-instructions');
-        detailsBackground.classList.remove('hidden');
+      if(!detailsBackground.classList.contains('hidden')) {
+        viewMoreViewLessBtn.classList.remove('display-instructions');
+        detailsBackground.classList.add('hidden');
 
         // clickedRecipe.ingredients.forEach(ingredient => {
         //   console.log(ingredient)
         //   ingredientsTag.insertAdjacentHTML('afterbegin', `${ingredient.id}, ${ingredient.quantity.amount}, ${ingredient.quantity.unit}`)
         // });
 
-    } else if (!detailsBackground.classList.contains('hidden')) {
-        event.target.classList.remove('display-instructions');
-        detailsBackground.classList.add('hidden');
+    } else if (detailsBackground.classList.contains('hidden')) {
+        viewMoreViewLessBtn.classList.add('display-instructions');
+        detailsBackground.classList.remove('hidden');
 
 
       }

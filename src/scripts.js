@@ -18,7 +18,9 @@ const recipeCard = document.querySelector('#recipeCard');
 const detailsBackground = document.querySelector('#detailsBackground')
 
 const viewFavoriteRecipesBtn = document.querySelector('#viewFavoriteRecipesBtn');
-const viewHomeBtn =  document.querySelector('#homeBtn');
+const viewHomeBtn = document.querySelector('#homeBtn');
+const viewCookbookRecipesBtn = document.querySelector('#cookbookBtn');
+const viewMoreViewLessBtn = document.querySelector('#viewMoreViewLessBtn');
 
 
 //Event Listeners
@@ -34,9 +36,15 @@ viewFavoriteRecipesBtn.addEventListener('click', function() {
   viewFavoriteRecipes(event, recipeRepository, user);
 })
 
+viewCookbookRecipesBtn.addEventListener('click', function() {
+  viewCookbookRecipes(event, recipeRepository, user);
+})
+
 viewHomeBtn.addEventListener('click', function() {
   viewHomePage(event, recipeRepository, user)
 })
+
+
 
 
 //Methods
@@ -81,9 +89,9 @@ function addToCookbookButton(event) {
 
 function displayInstructionsButton(event) {
   if (event.target.closest('button').id === 'viewMoreViewLessBtn') {
-    if (detailsBackground.classList.contains('display-instructions')) {
+    if (viewMoreViewLessBtn.classList.contains('display-instructions')) {
       domUpdates.displayInstructions(event, recipeRepository);
-    } else if(!detailsBackground.classList.contains('display-instructions')) {
+    } else if(!viewMoreViewLessBtn.classList.contains('display-instructions')) {
       domUpdates.displayInstructions(event, recipeRepository);
     }
   }
@@ -96,8 +104,16 @@ function viewFavoriteRecipes(event, recipeRepository, user) {
     }
   }
 
+function viewCookbookRecipes(event, recipeRepository, user) {
+  console.log("cookbook clicked")
+  if (event.target.closest('button').id === 'cookbookBtn') {
+    allRecipeCards.innerHTML = ' ';
+    domUpdates.displayCookbookRecipeCards(recipeRepository, user)
+    }
+  }
+
 function viewHomePage(event, recipeRepository) {
-  console.log("i am here")
+  console.log("view home clicked")
   if (event.target.closest('button').id === 'homeBtn') {
     allRecipeCards.innerHTML = ' ';
     domUpdates.displayRecipeCards(recipeRepository)
