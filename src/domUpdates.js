@@ -96,16 +96,27 @@ let domUpdates = {
   displayFavoriteRecipeCards(recipes, user) {
     allRecipeCards.innerHTML = ' ';
     user.favoriteRecipes.forEach(recipe => {
+      // console.log("OUR RECIPE", recipe);
       allRecipeCards.insertAdjacentHTML('afterbegin', `
-      <article id="recipeCard" class="recipe-card">
-        <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
-        <div class="recipe-card-btn-section">
-          <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
-          <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
-          <button data-id=${recipe.id} id="addToFavoritesBtn" class="favorite-recipe" type="button" name="button">Favorites</button>
-        </div>
-        <p id="recipeName" class="recipe-name">${recipe.name}</p>
-      </article>
+        <article id="recipeCard" class="recipe-card">
+          <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
+          <div class="recipe-card-btn-section">
+            <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+            <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
+            <button data-id=${recipe.id} id="addToFavoritesBtn" class="favorite-recipe" type="button" name="button">Favorites</button>
+          </div>
+          <p id="recipeName" class="recipe-name">${recipe.name}</p>
+          <section id="detailsBackgrnd" class="details-background hidden">
+            <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
+            <ul>
+            ${this.returnIngredientsDetails(recipe)}
+            </ul>
+            <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
+            <ol>
+            ${this.returnInstructionDetails(recipe)}
+            </ol>
+          </section>
+        </article>
       `)
     })
   },
@@ -138,16 +149,27 @@ let domUpdates = {
   displayCookbookRecipeCards(recipes, user) {
     allRecipeCards.innerHTML = ' ';
     user.recipesToCook.forEach(recipe => {
+      // console.log("OUR RECIPE", recipe);
       allRecipeCards.insertAdjacentHTML('afterbegin', `
-      <article id="recipeCard" class="recipe-card">
-        <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
-        <div class="recipe-card-btn-section">
-          <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
-          <button data-id=${recipe.id} id="addToCookbookBtn" class="cookbook-recipe" type="button" name="button">Cook</button>
-          <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
-        </div>
-        <p id="recipeName" class="recipe-name">${recipe.name}</p>
-      </article>
+        <article id="recipeCard" class="recipe-card">
+          <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
+          <div class="recipe-card-btn-section">
+            <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+            <button data-id=${recipe.id} id="addToCookbookBtn" class="cookbook-recipe" type="button" name="button">Cook</button>
+            <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+          </div>
+          <p id="recipeName" class="recipe-name">${recipe.name}</p>
+          <section id="detailsBackgrnd" class="details-background hidden">
+            <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
+            <ul>
+            ${this.returnIngredientsDetails(recipe)}
+            </ul>
+            <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
+            <ol>
+            ${this.returnInstructionDetails(recipe)}
+            </ol>
+          </section>
+        </article>
       `)
     })
   },
@@ -165,10 +187,10 @@ let domUpdates = {
       }
     })
 
-      if (!detailsBackground.classList.contains('hidden')) {
+      if (event.target.dataset.id === clickedRecipe.id && !detailsBackground.classList.contains('hidden')) {
         viewMoreViewLessBtn.classList.remove('display-instructions');
         detailsBackground.classList.add('hidden');
-      } else if (detailsBackground.classList.contains('hidden')) {
+      } else if (event.target.dataset.id === clickedRecipe.id && detailsBackground.classList.contains('hidden')) {
         viewMoreViewLessBtn.classList.add('display-instructions');
         detailsBackground.classList.remove('hidden');
       }

@@ -27,9 +27,10 @@ const viewMoreViewLessBtn = document.querySelector('#viewMoreViewLessBtn');
 window.onload = onStartUp();
 
 allRecipeCards.addEventListener('click', function() {
+  displayInstructionsButton(event);
   addToFavoritesButton(event);
   addToCookbookButton(event);
-  displayInstructionsButton(event);
+
 })
 
 viewFavoriteRecipesBtn.addEventListener('click', function() {
@@ -41,7 +42,7 @@ viewCookbookRecipesBtn.addEventListener('click', function() {
 })
 
 viewHomeBtn.addEventListener('click', function() {
-  viewHomePage(event, recipeRepository, user)
+  viewHomePage(event, recipeRepository, user);
 })
 
 
@@ -53,10 +54,10 @@ function onStartUp() {
   apiCalls.getData()
     .then((promise) => {
       //console.log('user data', userData);
-      // console.log('the promise', promise)
+      console.log('the promise', promise)
       //user = new User(userData[(Math.floor(Math.random() * userData.length))]);
       user = new User(promise[0]['usersData'][0])
-      // console.log('user', user)
+      console.log('user', user)
       globalIngredientsData = promise[1]['ingredientsData'];
       recipeRepository = new RecipeRepository(promise[2]['recipeData'])
       //domUpdates function that populates all recipe cards to the home page
@@ -151,6 +152,5 @@ export const addNameProperty = recipe => {
       }
     }
   })
-  // console.log('INGREDIENTS INFO', ingredientInfo);
   return ingredientInfo;
 }
