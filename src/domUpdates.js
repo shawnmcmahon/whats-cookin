@@ -32,7 +32,6 @@ let domUpdates = {
     //allRecipeCards.innerHTML = ' ';
     // console.log("what recipes are these", recipes)
     recipes.recipesData.forEach(recipe => {
-      console.log("Recipe on LOAD", recipe);
       allRecipeCards.insertAdjacentHTML('afterbegin', `
         <article id="recipeCard" class="recipe-card">
           <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
@@ -90,7 +89,7 @@ let domUpdates = {
         event.target.classList.remove('favorite-recipe');
         user.removeFromFavorites(favoriteRecipe);
       }
-      console.log('Favorite Clicked', user);
+      //console.log('Favorite Clicked', user);
 
   },
   //4. A function that populates the favorites recipes cards to the screen and
@@ -142,7 +141,7 @@ let domUpdates = {
       user.removeFromRecipesToCook(recipeToBeCooked);
     }
 
-    console.log('COOKBOOK CLICKED', user);
+    //console.log('COOKBOOK CLICKED', user);
   },
   //6. A function that populates the cookbook recipes cards to the screen and
   //removes all recipe cards.
@@ -236,7 +235,7 @@ let domUpdates = {
 
   //8. A function that displays recipe on the screen when a user types in
   //keywords the search bar. Should search through recipe name, ingredient names, or tags
-  searchRecipes(recipes, ingedientsData, user) {
+  searchRecipes(recipes, ingredientsData, user) {
     allRecipeCards.innerHTML = ' ';
     let searchQuery =  searchField.value;
     let results = [];
@@ -245,8 +244,15 @@ let domUpdates = {
     //console.log(searchQuery);
     //console.log("what recipes we working with?", recipes)
     const tagResults = recipes.retrieveRecipesByTag(searchQuery);
+    const nameOrIngredientResults = recipes.retrieveRecipesByNameOrIngredient(ingredientsData, searchQuery);
     //console.log(tagResults);
-    results.push(tagResults);
+    if (tagResults.length > 0) {
+      results.push(tagResults);
+    }
+    if (nameOrIngredientResults.length > 0) {
+      results.push(nameOrIngredientResults);
+
+    }
     console.log('search results here sir', results)
     this.displaySearchResults(results);
 

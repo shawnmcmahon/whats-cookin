@@ -48,10 +48,8 @@ viewHomeBtn.addEventListener('click', function() {
 
 searchField.addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
-  console.log('Search requested');
-  domUpdates.searchRecipes(recipeRepository, globalIngredientsData, user);
 
-  console.log('Search finished')
+  domUpdates.searchRecipes(recipeRepository, globalIngredientsData, user);
   }
 })
 
@@ -63,16 +61,13 @@ searchField.addEventListener('keypress', function(event) {
 function onStartUp() {
   apiCalls.getData()
     .then((promise) => {
-      //console.log('user data', userData);
-      console.log('the promise', promise)
+
       //user = new User(userData[(Math.floor(Math.random() * userData.length))]);
       user = new User(promise[0]['usersData'][0])
       console.log('user', user)
       globalIngredientsData = promise[1]['ingredientsData'];
       recipeRepository = new RecipeRepository(promise[2]['recipeData'])
-      //domUpdates function that populates all recipe cards to the home page
-
-      //domUpdates function that will greet the user by updating the headline
+    
       domUpdates.greetUser(user);
       domUpdates.displayRecipeCards(recipeRepository)
     })
@@ -151,7 +146,7 @@ function viewHomePage(event, recipeRepository) {
 //A function that adds the ingredient name to the ingredient so it can be displayed
 //on the details page
 export const addNameProperty = recipe => {
-  console.log('do you have what we need?', recipe.ingredients)
+  //console.log('do you have what we need?', recipe.ingredients)
   let ingredientInfo = recipe.ingredients.map(ingredient => {
     const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
     return {

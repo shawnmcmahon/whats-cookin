@@ -24,7 +24,7 @@ describe('Recipe Repository Class', () => {
     expect(recipeRepository.recipesData).to.equal(sampleRecipesData);
   });
 
-  it.only('Should have a method that retrieves recipes by a tag', () => {
+  it('Should have a method that retrieves recipes by a tag', () => {
     const recipesByTag = recipeRepository.retrieveRecipesByTag('antipasti', 'lunch');
     expect(recipesByTag).to.eql([{
       "id": 595736,
