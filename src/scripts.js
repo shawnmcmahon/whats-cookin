@@ -22,6 +22,7 @@ const viewHomeBtn = document.querySelector('#homeBtn');
 const viewCookbookRecipesBtn = document.querySelector('#cookbookBtn');
 const viewMoreViewLessBtn = document.querySelector('#viewMoreViewLessBtn');
 
+const searchField = document.querySelector('#searchField');
 
 //Event Listeners
 window.onload = onStartUp();
@@ -43,6 +44,15 @@ viewCookbookRecipesBtn.addEventListener('click', function() {
 
 viewHomeBtn.addEventListener('click', function() {
   viewHomePage(event, recipeRepository, user);
+})
+
+searchField.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+  console.log('Search requested');
+  domUpdates.searchRecipes(recipeRepository, globalIngredientsData, user);
+
+  console.log('Search finished')
+  }
 })
 
 
@@ -141,6 +151,7 @@ function viewHomePage(event, recipeRepository) {
 //A function that adds the ingredient name to the ingredient so it can be displayed
 //on the details page
 export const addNameProperty = recipe => {
+  console.log('do you have what we need?', recipe.ingredients)
   let ingredientInfo = recipe.ingredients.map(ingredient => {
     const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
     return {

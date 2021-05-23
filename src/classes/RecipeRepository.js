@@ -6,12 +6,33 @@ class RecipeRepository {
   }
 
   retrieveRecipesByTag(...tags) {
+    // const tagArray = [];
+    // const tagArray.push(...tags);
+    //console.log('tags here', tags)
     const lowerCaseTags = tags.map(tag => tag.toLowerCase());
+    //console.log('lowerCaseTags', lowerCaseTags);
     let results =  lowerCaseTags.reduce((matchingRecipes, tag) => {
+      //console.log('tag here', tag)
       this.recipesData.forEach(recipe => {
-        if (recipe.tags.includes(tag)) {
-          matchingRecipes.push(recipe);
-        }
+        //console.log('recipe here', recipe)
+        recipe.tags.forEach(currentTag => {
+          //console.log('recipe tags', recipe.tags)
+          //console.log('currentTag', currentTag)
+          //console.log('tag', tag);
+          if(tag === currentTag) {
+            //console.log('hello')
+            //console.log('tag', tag);
+            //console.log('current tag', currentTag)
+            //console.log('matching recipes value before push', matchingRecipes)
+            matchingRecipes.push(recipe);
+            //console.log('are you pushing anything?', matchingRecipes)
+          }
+        })
+        // if (recipe.tags.includes(tag)) {
+        //   console.log('who are you tag?', tag);
+          //console.log('recipe.tags', recipe.tags)
+          //matchingRecipes.push(recipe);
+      //   }
       })
       return matchingRecipes
     }, [])
