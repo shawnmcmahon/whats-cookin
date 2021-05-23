@@ -84,7 +84,7 @@ let domUpdates = {
         <div class="recipe-card-btn-section">
           <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
           <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
-          <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+          <button data-id=${recipe.id} id="addToFavoritesBtn" class="favorite-recipe" type="button" name="button">Favorites</button>
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
         <section id="detailsBackground" class="details-background hidden">
@@ -131,7 +131,7 @@ let domUpdates = {
         <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
         <div class="recipe-card-btn-section">
           <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
-          <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
+          <button data-id=${recipe.id} id="addToCookbookBtn" class="cookbook-recipe" type="button" name="button">Cook</button>
           <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
