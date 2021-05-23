@@ -7,7 +7,7 @@ const addToCookbookBtn = document.querySelector('.addToCookbookBtn');
 const addToFavoritesBtn = document.querySelector('.addToFavoritesBtn');
 const greeting = document.querySelector('#greeting');
 const allRecipeCards = document.querySelector('#allRecipeCards');
-const detailsBackground = document.querySelector('#detailsBackground')
+// const detailsBackground = document.querySelector('#detailsBackgrnd');
 const ingredientsTag = document.querySelector('#ingredients');
 const instructionsTag = document.querySelector('#instructions');
 
@@ -41,7 +41,7 @@ let domUpdates = {
             <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
           </div>
           <p id="recipeName" class="recipe-name">${recipe.name}</p>
-          <section id="detailsBackground" class="details-background hidden">
+          <section id="detailsBackgrnd" class="details-background hidden">
             <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
             <ul>
             ${this.returnIngredientsDetails(recipe)}
@@ -156,67 +156,32 @@ let domUpdates = {
   // recipe instructions background when you press the "details" button
   // Button label should toggle to View Less when ingredients are activated
   // (Should toggle back to normal view without extra information when button is clicked again)
+
   displayInstructions(event, recipes) {
+    const detailsBackground = document.getElementById('detailsBackgrnd')
     const clickedRecipe = recipes.recipesData.find(recipe => {
       if (recipe.id === Number(event.target.dataset.id)) {
         return recipe;
       }
     })
 
-    const recipeWithIngredientName = addNameProperty(clickedRecipe);
-    // allRecipeCards.insertAdjacentHTML('afterbegin', `
-    //   <article id="recipeCard" class="recipe-card">
-    //     <img id="recipeImage" class="recipe-image" src="${clickedRecipe.image}" alt="Recipe Image">
-    //     <div class="recipe-card-btn-section">
-    //       <button data-id=${clickedRecipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
-    //       <button data-id=${clickedRecipe.id} id="addToCookbookBtn" class="cookbook-recipe" type="button" name="button">Cook</button>
-    //       <button data-id=${clickedRecipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
-    //     </div>
-    //     <p id="recipeName" class="recipe-name">${recipeWithIngredientName.name}</p>
-    //   </article>
-    // `)
+      if (!detailsBackground.classList.contains('hidden')) {
+        viewMoreViewLessBtn.classList.remove('display-instructions');
+        detailsBackground.classList.add('hidden');
+      } else if (detailsBackground.classList.contains('hidden')) {
+        viewMoreViewLessBtn.classList.add('display-instructions');
+        detailsBackground.classList.remove('hidden');
+      }
 
-    recipeWithIngredientName.forEach(ingredient => {
-      clickedRecipe.instructions.forEach(instruction => {
-        // console.log('CLICKED', clickedRecipe);
-        // console.log("Instructions!!!", instruction.instruction);
-        // console.log("Ingredient Name", ingredient.name);
-        detailsBackground.insertAdjacentHTML('beforebegin', `
-        <section id="detailsBackground" class="details-background">
-          <p data-id=${clickedRecipe.id} id="ingredientsLabel" class="label">Ingredients</p>
-          <p data-id=${clickedRecipe.id} id="ingredients" class="details-text">${ingredient.name}</p>
-          <p data-id=${clickedRecipe.id} id="instructionsLabel" class="label">instructions</p>
-          <p data-id=${clickedRecipe.id} id="instructions" class="details-text">${instruction.instruction}</p>
-        </section>
-        `)
-      })
-    })
 
-    //   if(!detailsBackground.classList.contains('hidden')) {
-    //     viewMoreViewLessBtn.classList.remove('display-instructions');
-    //     detailsBackground.classList.add('hidden');
-    //
-    //     // clickedRecipe.ingredients.forEach(ingredient => {
-    //     //   console.log(ingredient)
-    //     //   ingredientsTag.insertAdjacentHTML('afterbegin', `${ingredient.id}, ${ingredient.quantity.amount}, ${ingredient.quantity.unit}`)
-    //     // });
-    //
-    // } else if (detailsBackground.classList.contains('hidden')) {
-    //     viewMoreViewLessBtn.classList.add('display-instructions');
-    //     detailsBackground.classList.remove('hidden');
-    //
-    //
-    //   }
-    console.log('VIEWMORE CLICKED');
-   }
+    }
+    // console.log('VIEWMORE CLICKED');
+}
 
   //8. A function that displays recipe on the screen when a user types in
   //keywords the search bar. Should search through recipe name, ingredient names, or tags
 
 
-
-
-}
 
 
 export default domUpdates;
