@@ -11,7 +11,9 @@ class User {
 
   addToFavorites(recipe) {
     //If its not already in there, check first
-    this.favoriteRecipes.push(recipe);
+    if(!this.favoriteRecipes.includes(recipe)) {
+      this.favoriteRecipes.push(recipe);
+    }
   }
 
   removeFromFavorites(recipe) {
@@ -20,7 +22,9 @@ class User {
   }
 
   addToRecipesToCook(recipe) {
-    this.recipesToCook.push(recipe);
+    if(!this.recipesToCook.includes(recipe)) {
+      this.recipesToCook.push(recipe);
+    }
   }
 
   removeFromRecipesToCook(recipe) {
