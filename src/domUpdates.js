@@ -41,10 +41,10 @@ let domUpdates = {
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
         <section id="detailsBackground" class="details-background hidden">
-          <p id="ingredientsLabel" class="label">Ingredients</p>
-          <p id="ingredients" class="details-text"></p>
-          <p id="instructionsLabel" class="label">instructions</p>
-          <p id="instructions" class="details-text"></p>
+          <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
+          <p data-id=${recipe.id} id="ingredients" class="details-text">${recipe.ingredients}</p>
+          <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
+          <p data-id=${recipe.id} id="instructions" class="details-text">${recipe.instructions}</p>
         </section>
       </article>
       `)
@@ -114,20 +114,17 @@ let domUpdates = {
     })
     // const recipeWithIngredientNames = addNameProperty(clickedRecipe);
 
-      if(!detailsBackground.classList.contains('display-instructions')) {
-        detailsBackground.classList.add('display-instructions');
-        detailsBackground.classList.toggle('hidden');
-        clickedRecipe.ingredients.forEach(ingredient => {
-          console.log(ingredient)
-          ingredientsTag.insertAdjacentHTML('afterbegin', `${ingredient.id}, ${ingredient.quantity.amount}, ${ingredient.quantity.unit}`)
-        });
-      //Have a function the inputs the instructions on the detailsBackground
-    } else if (detailsBackground.classList.contains('display-instructions')) {
-        detailsBackground.classList.remove('display-instructions');
-        detailsBackground.classList.toggle('hidden');
-        detailsBackground.innerHTML = ' ';
+      if(!detailsBackground.classList.contains('hidden')) {
+        detailsBackground.classList.add('hidden');
+        // clickedRecipe.ingredients.forEach(ingredient => {
+        //   console.log(ingredient)
+        //   ingredientsTag.insertAdjacentHTML('afterbegin', `${ingredient.id}, ${ingredient.quantity.amount}, ${ingredient.quantity.unit}`)
+        // });
 
-      //Have a function the inputs the instructions on the detailsBackground
+    } else if (detailsBackground.classList.contains('hidden')) {
+        detailsBackground.classList.remove('hidden');
+
+
       }
   //
    }
