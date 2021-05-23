@@ -41,7 +41,7 @@ let domUpdates = {
             <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
           </div>
           <p id="recipeName" class="recipe-name">${recipe.name}</p>
-          <section id="detailsBackgrnd" class="details-background hidden">
+          <section id="${recipe.id}" class="details-background hidden">
             <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
             <ul>
             ${this.returnIngredientsDetails(recipe)}
@@ -103,7 +103,7 @@ let domUpdates = {
           <div class="recipe-card-btn-section">
             <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
             <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
-            <button data-id=${recipe.id} id="addToFavoritesBtn" class="favorite-recipe" type="button" name="button">Favorites</button>
+            <button data-id=${recipe.id} id="addToFavoritesBtn" class="type="button" name="button">Favorites</button>
           </div>
           <p id="recipeName" class="recipe-name">${recipe.name}</p>
           <section id="detailsBackgrnd" class="details-background hidden">
@@ -180,17 +180,18 @@ let domUpdates = {
   // (Should toggle back to normal view without extra information when button is clicked again)
 
   displayInstructions(event, recipes) {
-    const detailsBackground = document.getElementById('detailsBackgrnd')
     const clickedRecipe = recipes.recipesData.find(recipe => {
       if (recipe.id === Number(event.target.dataset.id)) {
         return recipe;
       }
     })
 
-      if (event.target.dataset.id === clickedRecipe.id && !detailsBackground.classList.contains('hidden')) {
+    const detailsBackground = document.getElementById(`${clickedRecipe.id}`);
+
+      if (!detailsBackground.classList.contains('hidden')) {
         viewMoreViewLessBtn.classList.remove('display-instructions');
         detailsBackground.classList.add('hidden');
-      } else if (event.target.dataset.id === clickedRecipe.id && detailsBackground.classList.contains('hidden')) {
+      } else if (detailsBackground.classList.contains('hidden')) {
         viewMoreViewLessBtn.classList.add('display-instructions');
         detailsBackground.classList.remove('hidden');
       }
