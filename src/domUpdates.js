@@ -1,13 +1,13 @@
 import Recipe from './classes/Recipe'
-//import { addNameProperty } from './scripts'
+import { addNameProperty } from './scripts'
 
 
 const detailsBtn = document.querySelector('.viewMoreViewLessBtn');
 const addToCookbookBtn = document.querySelector('.addToCookbookBtn');
 const addToFavoritesBtn = document.querySelector('.addToFavoritesBtn');
-const greeting = document.querySelector('.greeting');
+const greeting = document.querySelector('#greeting');
 const allRecipeCards = document.querySelector('#allRecipeCards');
-const detailsBackground = document.querySelector('#detailsBackground')
+// const detailsBackground = document.querySelector('#detailsBackgrnd');
 const ingredientsTag = document.querySelector('#ingredients');
 const instructionsTag = document.querySelector('#instructions');
 
@@ -31,24 +31,42 @@ let domUpdates = {
   displayRecipeCards(recipes) {
     allRecipeCards.innerHTML = ' ';
     recipes.recipesData.forEach(recipe => {
+      // console.log("OUR RECIPE", recipe);
       allRecipeCards.insertAdjacentHTML('afterbegin', `
-      <article id="recipeCard" class="recipe-card">
-        <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
-        <div class="recipe-card-btn-section">
-          <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
-          <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
-          <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
-        </div>
-        <p id="recipeName" class="recipe-name">${recipe.name}</p>
-        <section id="detailsBackground" class="details-background hidden">
-          <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
-          <p data-id=${recipe.id} id="ingredients" class="details-text">${recipe.ingredients}</p>
-          <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
-          <p data-id=${recipe.id} id="instructions" class="details-text">${recipe.instructions}</p>
-        </section>
-      </article>
+        <article id="recipeCard" class="recipe-card">
+          <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
+          <div class="recipe-card-btn-section">
+            <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+            <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
+            <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+          </div>
+          <p id="recipeName" class="recipe-name">${recipe.name}</p>
+          <section id="detailsBackgrnd" class="details-background hidden">
+            <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
+            <ul>
+            ${this.returnIngredientsDetails(recipe)}
+            </ul>
+            <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
+            <ol>
+            ${this.returnInstructionDetails(recipe)}
+            </ol>
+          </section>
+        </article>
       `)
     })
+  },
+  // map will always return an array of the same length as the original
+
+  returnIngredientsDetails(recipe) {
+    return addNameProperty(recipe).map(ingredient => {
+      return `<li>${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit} ${ingredient.name}</li>`
+    }).join('');
+  },
+
+  returnInstructionDetails(recipe) {
+    return recipe.instructions.map(instruction => {
+      return `<li>${instruction.instruction}</li>`
+    }).join('');
   },
 
   //3. A function that adds the recipe card to the favorite recipes array
@@ -87,12 +105,6 @@ let domUpdates = {
           <button data-id=${recipe.id} id="addToFavoritesBtn" class="favorite-recipe" type="button" name="button">Favorites</button>
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
-        <section id="detailsBackground" class="details-background hidden">
-          <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
-          <p data-id=${recipe.id} id="ingredients" class="details-text">${recipe.ingredients}</p>
-          <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
-          <p data-id=${recipe.id} id="instructions" class="details-text">${recipe.instructions}</p>
-        </section>
       </article>
       `)
     })
@@ -135,12 +147,6 @@ let domUpdates = {
           <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
-        <section id="detailsBackground" class="details-background hidden">
-          <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
-          <p data-id=${recipe.id} id="ingredients" class="details-text">${recipe.ingredients}</p>
-          <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
-          <p data-id=${recipe.id} id="instructions" class="details-text">${recipe.instructions}</p>
-        </section>
       </article>
       `)
     })
@@ -150,39 +156,32 @@ let domUpdates = {
   // recipe instructions background when you press the "details" button
   // Button label should toggle to View Less when ingredients are activated
   // (Should toggle back to normal view without extra information when button is clicked again)
+
   displayInstructions(event, recipes) {
+    const detailsBackground = document.getElementById('detailsBackgrnd')
     const clickedRecipe = recipes.recipesData.find(recipe => {
       if (recipe.id === Number(event.target.dataset.id)) {
         return recipe;
       }
     })
-    // const recipeWithIngredientNames = addNameProperty(clickedRecipe);
 
-      if(!detailsBackground.classList.contains('hidden')) {
+      if (!detailsBackground.classList.contains('hidden')) {
         viewMoreViewLessBtn.classList.remove('display-instructions');
         detailsBackground.classList.add('hidden');
-
-        // clickedRecipe.ingredients.forEach(ingredient => {
-        //   console.log(ingredient)
-        //   ingredientsTag.insertAdjacentHTML('afterbegin', `${ingredient.id}, ${ingredient.quantity.amount}, ${ingredient.quantity.unit}`)
-        // });
-
-    } else if (detailsBackground.classList.contains('hidden')) {
+      } else if (detailsBackground.classList.contains('hidden')) {
         viewMoreViewLessBtn.classList.add('display-instructions');
         detailsBackground.classList.remove('hidden');
-
-
       }
-    console.log('VIEWMORE CLICKED');
-   }
+
+
+    }
+    // console.log('VIEWMORE CLICKED');
+}
 
   //8. A function that displays recipe on the screen when a user types in
   //keywords the search bar. Should search through recipe name, ingredient names, or tags
 
 
-
-
-}
 
 
 export default domUpdates;
