@@ -41,13 +41,15 @@ let domUpdates = {
             <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
           </div>
           <p id="recipeName" class="recipe-name">${recipe.name}</p>
-          <section id="detailsBackground" class="details-background">
+          <section id="detailsBackground" class="details-background hidden">
             <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
             <ul>
             ${this.returnIngredientsDetails(recipe)}
             </ul>
             <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
-            <p data-id=${recipe.id} id="instructions" class="details-text"></p>
+            <ol>
+            ${this.returnInstructionDetails(recipe)}
+            </ol>
           </section>
         </article>
       `)
@@ -57,8 +59,14 @@ let domUpdates = {
 
   returnIngredientsDetails(recipe) {
     return addNameProperty(recipe).map(ingredient => {
-      return `<li>${ingredient.quantity.amount} ${ingredient.quantity.unit} ${ingredient.name}</li>`
-  }).join('');
+      return `<li>${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit} ${ingredient.name}</li>`
+    }).join('');
+  },
+
+  returnInstructionDetails(recipe) {
+    return recipe.instructions.map(instruction => {
+      return `<li>${instruction.instruction}</li>`
+    }).join('');
   },
 
   //3. A function that adds the recipe card to the favorite recipes array
