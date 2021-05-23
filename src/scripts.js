@@ -14,7 +14,8 @@ const searchInput = document.querySelector('#searchField');
 const allRecipeCards = document.querySelector('#allRecipeCards');
 //const allRecipeCardsBackground = document.querySelector('.allRecipeCards');
 //const detailsBackground = document.querySelector('.detailsBackground');
-
+const recipeCard = document.querySelector('#recipeCard');
+const detailsBackground = document.querySelector('#detailsBackground')
 
 //Event Listeners
 window.onload = onStartUp();
@@ -47,26 +48,30 @@ function onStartUp() {
 }
 
 function addToFavoritesButton(event) {
-  if (event.target.classList.contains('favorite-recipe')) {
-    domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
-  } else if(!event.target.classList.contains('favorite-recipe')) {
-    domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
+  if (event.target.closest('button').id === 'addToFavoritesBtn') {
+    if (recipeCard.classList.contains('favorite-recipe')) {
+      domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
+    } else if(!recipeCard.classList.contains('favorite-recipe')) {
+      domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
+    }
   }
 }
 
 function addToCookbookButton(event) {
-  if (event.target.classList.contains('favorite-recipe')) {
+  if (recipeCard.classList.contains('favorite-recipe')) {
     domUpdates.addToCookbook(event, recipeRepository, user);
-  } else if(!event.target.classList.contains('favorite-recipe')) {
+  } else if(!recipeCard.classList.contains('favorite-recipe')) {
     domUpdates.addToCookbook(event, recipeRepository, user)
   }
 }
 
 function displayInstructionsButton(event) {
-  if (event.target.classList.contains('display-instructions')) {
-    domUpdates.displayInstructions(event, recipeRepository);
-  } else if(!event.target.classList.contains('display-instructions')) {
-    domUpdates.displayInstructions(event, recipeRepository);
+  if (event.target.closest('button').id === 'viewMoreViewLessBtn') {
+    if (detailsBackground.classList.contains('display-instructions')) {
+      domUpdates.displayInstructions(event, recipeRepository);
+    } else if(!detailsBackground.classList.contains('display-instructions')) {
+      domUpdates.displayInstructions(event, recipeRepository);
+    }
   }
 }
 
@@ -97,7 +102,7 @@ function addNameProperty(recipe) {
       name: globalIngredientsData[index].name,
       id: ingredient.id,
       quantity: {
-        amount: ingredient.quantity.amount, 
+        amount: ingredient.quantity.amount,
         unit: ingredient.quantity.unit
       }
     }

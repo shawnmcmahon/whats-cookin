@@ -1,4 +1,5 @@
 import Recipe from './classes/Recipe'
+import { addNameProperty } from './scripts'
 
 
 const detailsBtn = document.querySelector('.viewMoreViewLessBtn');
@@ -7,8 +8,13 @@ const addToFavoritesBtn = document.querySelector('.addToFavoritesBtn');
 const greeting = document.querySelector('.greeting');
 const allRecipeCards = document.querySelector('#allRecipeCards');
 const detailsBackground = document.querySelector('#detailsBackground')
-const ingredientsTag = document.querySelector('.ingredients');
-const instructionsTag = document.querySelector('.instructions');
+const ingredientsTag = document.querySelector('#ingredients');
+const instructionsTag = document.querySelector('#instructions');
+
+const recipeCard = document.querySelector('#recipeCard');
+
+
+
 
 
 // Event Listeners
@@ -35,10 +41,10 @@ let domUpdates = {
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
         <section id="detailsBackground" class="details-background hidden">
-        <p id="ingredientsLabel" class="label">Ingredients</p>
-        <p id="ingredients" class="details-text"></p>
-        <p id="instructionsLabel" class="label">instructions</p>
-        <p id="instructions" class="details-text"></p>
+          <p id="ingredientsLabel" class="label">Ingredients</p>
+          <p id="ingredients" class="details-text"></p>
+          <p id="instructionsLabel" class="label">instructions</p>
+          <p id="instructions" class="details-text"></p>
         </section>
       </article>
       `)
@@ -83,7 +89,7 @@ let domUpdates = {
     if(!event.target.classList.contains('cookbook-recipe')) {
       event.target.classList.add('cookbook-recipe');
       user.addToRecipesToCook(recipeToBeCooked);
-    } else if (event.target.classList.contains('fcookbook-recipe')) {
+    } else if (event.target.classList.contains('cookbook-recipe')) {
       event.target.classList.remove('cookbook-recipe');
       user.removeFromRecipesToCook(recipeToBeCooked);
     }
@@ -106,20 +112,25 @@ let domUpdates = {
         return recipe;
       }
     })
-      if(!event.target.classList.contains('display-instructions')) {
-        event.target.classList.add('display-instructions');
+    // const recipeWithIngredientNames = addNameProperty(clickedRecipe);
+
+      if(!detailsBackground.classList.contains('display-instructions')) {
+        detailsBackground.classList.add('display-instructions');
+        detailsBackground.classList.toggle('hidden');
         clickedRecipe.ingredients.forEach(ingredient => {
+          console.log(ingredient)
           ingredientsTag.insertAdjacentHTML('afterbegin', `${ingredient.id}, ${ingredient.quantity.amount}, ${ingredient.quantity.unit}`)
         });
       //Have a function the inputs the instructions on the detailsBackground
-      } else if (event.target.classList.contains('display-instructions')) {
-        event.target.classList.remove('display-instructions');
+    } else if (detailsBackground.classList.contains('display-instructions')) {
+        detailsBackground.classList.remove('display-instructions');
+        detailsBackground.classList.toggle('hidden');
         detailsBackground.innerHTML = ' ';
 
       //Have a function the inputs the instructions on the detailsBackground
       }
-
-  }
+  //
+   }
 
   //8. A function that displays recipe on the screen when a user types in
   //keywords the search bar. Should search through recipe name, ingredient names, or tags
