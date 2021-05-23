@@ -17,6 +17,10 @@ const allRecipeCards = document.querySelector('#allRecipeCards');
 const recipeCard = document.querySelector('#recipeCard');
 const detailsBackground = document.querySelector('#detailsBackground')
 
+const viewFavoriteRecipesBtn = document.querySelector('#viewFavoriteRecipesBtn');
+const viewHomeBtn =  document.querySelector('#homeBtn');
+
+
 //Event Listeners
 window.onload = onStartUp();
 
@@ -24,6 +28,14 @@ allRecipeCards.addEventListener('click', function() {
   addToFavoritesButton(event);
   addToCookbookButton(event);
   displayInstructionsButton(event);
+})
+
+viewFavoriteRecipesBtn.addEventListener('click', function() {
+  viewFavoriteRecipes(event, recipeRepository, user);
+})
+
+viewHomeBtn.addEventListener('click', function() {
+  viewHomePage(event, recipeRepository, user)
 })
 
 
@@ -77,6 +89,20 @@ function displayInstructionsButton(event) {
   }
 }
 
+function viewFavoriteRecipes(event, recipeRepository, user) {
+  if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
+    allRecipeCards.innerHTML = ' ';
+    domUpdates.displayFavoriteRecipeCards(recipeRepository, user)
+    }
+  }
+
+function viewHomePage(event, recipeRepository) {
+  console.log("i am here")
+  if (event.target.closest('button').id === 'homeBtn') {
+    allRecipeCards.innerHTML = ' ';
+    domUpdates.displayRecipeCards(recipeRepository)
+    }
+  }
 //Function that handles the what happens when a button is clicked
 //(Consider having one big if, else conditional rather than multiple functions
 //for each button's event listener)
@@ -97,17 +123,17 @@ function displayInstructionsButton(event) {
 
 //A function that adds the ingredient name to the ingredient so it can be displayed
 //on the details page
-export const addNameProperty = recipe => {
-  let ingredientInfo = recipe.ingredients.map(ingredient => {
-    const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
-    return {
-      name: globalIngredientsData[index].name,
-      id: ingredient.id,
-      quantity: {
-        amount: ingredient.quantity.amount,
-        unit: ingredient.quantity.unit
-      }
-    }
-  })
-  return ingredientsInfo;
-}
+// export const addNameProperty = recipe => {
+//   let ingredientInfo = recipe.ingredients.map(ingredient => {
+//     const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
+//     return {
+//       name: globalIngredientsData[index].name,
+//       id: ingredient.id,
+//       quantity: {
+//         amount: ingredient.quantity.amount,
+//         unit: ingredient.quantity.unit
+//       }
+//     }
+//   })
+//   return ingredientsInfo;
+// }

@@ -1,5 +1,5 @@
 import Recipe from './classes/Recipe'
-import { addNameProperty } from './scripts'
+//import { addNameProperty } from './scripts'
 
 
 const detailsBtn = document.querySelector('.viewMoreViewLessBtn');
@@ -75,6 +75,28 @@ let domUpdates = {
   },
   //4. A function that populates the favorites recipes cards to the screen and
   //removes all recipe cards.
+  displayFavoriteRecipeCards(recipes, user) {
+    allRecipeCards.innerHTML = ' ';
+    user.favoriteRecipes.forEach(recipe => {
+      allRecipeCards.insertAdjacentHTML('afterbegin', `
+      <article id="recipeCard" class="recipe-card">
+        <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
+        <div class="recipe-card-btn-section">
+          <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+          <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
+          <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+        </div>
+        <p id="recipeName" class="recipe-name">${recipe.name}</p>
+        <section id="detailsBackground" class="details-background hidden">
+          <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
+          <p data-id=${recipe.id} id="ingredients" class="details-text">${recipe.ingredients}</p>
+          <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
+          <p data-id=${recipe.id} id="instructions" class="details-text">${recipe.instructions}</p>
+        </section>
+      </article>
+      `)
+    })
+  },
   //If no favorites available, switch the text of the favorite button from
   // Fav -> No Favs
 
