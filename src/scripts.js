@@ -14,6 +14,13 @@ const searchInput = document.querySelector('#searchField');
 const allRecipeCards = document.querySelector('#allRecipeCards');
 //const allRecipeCardsBackground = document.querySelector('.allRecipeCards');
 //const detailsBackground = document.querySelector('.detailsBackground');
+const recipeCard = document.querySelector('#recipeCard');
+const detailsBackground = document.querySelector('#detailsBackground')
+
+const viewFavoriteRecipesBtn = document.querySelector('#viewFavoriteRecipesBtn');
+const viewHomeBtn = document.querySelector('#homeBtn');
+const viewCookbookRecipesBtn = document.querySelector('#cookbookBtn');
+const viewMoreViewLessBtn = document.querySelector('#viewMoreViewLessBtn');
 
 
 //Event Listeners
@@ -24,6 +31,20 @@ allRecipeCards.addEventListener('click', function() {
   addToCookbookButton(event);
   displayInstructionsButton(event);
 })
+
+viewFavoriteRecipesBtn.addEventListener('click', function() {
+  viewFavoriteRecipes(event, recipeRepository, user);
+})
+
+viewCookbookRecipesBtn.addEventListener('click', function() {
+  viewCookbookRecipes(event, recipeRepository, user);
+})
+
+viewHomeBtn.addEventListener('click', function() {
+  viewHomePage(event, recipeRepository, user)
+})
+
+
 
 
 //Methods
@@ -47,29 +68,57 @@ function onStartUp() {
 }
 
 function addToFavoritesButton(event) {
-  if (event.target.classList.contains('favorite-recipe')) {
-    domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
-  } else if(!event.target.classList.contains('favorite-recipe')) {
-    domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
+  if (event.target.closest('button').id === 'addToFavoritesBtn') {
+    if (recipeCard.classList.contains('favorite-recipe')) {
+      domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
+    } else if(!recipeCard.classList.contains('favorite-recipe')) {
+      domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
+    }
   }
 }
 
 function addToCookbookButton(event) {
-  if (event.target.classList.contains('favorite-recipe')) {
-    domUpdates.addToCookbook(event, recipeRepository, user);
-  } else if(!event.target.classList.contains('favorite-recipe')) {
-    domUpdates.addToCookbook(event, recipeRepository, user)
+  if (event.target.closest('button').id === 'addToCookbookBtn') {
+    if (recipeCard.classList.contains('favorite-recipe')) {
+      domUpdates.addToCookbook(event, recipeRepository, user);
+    } else if(!recipeCard.classList.contains('favorite-recipe')) {
+      domUpdates.addToCookbook(event, recipeRepository, user)
+    }
   }
 }
 
 function displayInstructionsButton(event) {
-  if (event.target.classList.contains('display-instructions')) {
-    domUpdates.displayInstructions(event, recipeRepository);
-  } else if(!event.target.classList.contains('display-instructions')) {
-    domUpdates.displayInstructions(event, recipeRepository);
+  if (event.target.closest('button').id === 'viewMoreViewLessBtn') {
+    if (viewMoreViewLessBtn.classList.contains('display-instructions')) {
+      domUpdates.displayInstructions(event, recipeRepository);
+    } else if(!viewMoreViewLessBtn.classList.contains('display-instructions')) {
+      domUpdates.displayInstructions(event, recipeRepository);
+    }
   }
 }
 
+function viewFavoriteRecipes(event, recipeRepository, user) {
+  if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
+    allRecipeCards.innerHTML = ' ';
+    domUpdates.displayFavoriteRecipeCards(recipeRepository, user)
+    }
+  }
+
+function viewCookbookRecipes(event, recipeRepository, user) {
+  console.log("cookbook clicked")
+  if (event.target.closest('button').id === 'cookbookBtn') {
+    allRecipeCards.innerHTML = ' ';
+    domUpdates.displayCookbookRecipeCards(recipeRepository, user)
+    }
+  }
+
+function viewHomePage(event, recipeRepository) {
+  console.log("view home clicked")
+  if (event.target.closest('button').id === 'homeBtn') {
+    allRecipeCards.innerHTML = ' ';
+    domUpdates.displayRecipeCards(recipeRepository)
+    }
+  }
 //Function that handles the what happens when a button is clicked
 //(Consider having one big if, else conditional rather than multiple functions
 //for each button's event listener)
@@ -90,16 +139,17 @@ function displayInstructionsButton(event) {
 
 //A function that adds the ingredient name to the ingredient so it can be displayed
 //on the details page
-function addNameProperty(recipe) {
-  let ingredientInfo = recipe.ingredients.map(ingredient => {
-    const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
-    return {
-      name: globalIngredientsData[index].name,
-      id: ingredient.id,
-      quantity: {
-        amount: ingredient.quantity.amount, 
-        unit: ingredient.quantity.unit
-      }
-    }
-  })
-}
+// export const addNameProperty = recipe => {
+//   let ingredientInfo = recipe.ingredients.map(ingredient => {
+//     const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
+//     return {
+//       name: globalIngredientsData[index].name,
+//       id: ingredient.id,
+//       quantity: {
+//         amount: ingredient.quantity.amount,
+//         unit: ingredient.quantity.unit
+//       }
+//     }
+//   })
+//   return ingredientsInfo;
+// }
