@@ -13,7 +13,7 @@ const instructionsTag = document.querySelector('#instructions');
 
 const recipeCard = document.querySelector('#recipeCard');
 const viewMoreViewLessBtn = document.querySelector('#viewMoreViewLessBtn');
-
+const searchField = document.querySelector('#searchField');
 
 
 
@@ -29,9 +29,9 @@ let domUpdates = {
   //2. A function that populates all recipe cards to the home scren
 
   displayRecipeCards(recipes) {
-    allRecipeCards.innerHTML = ' ';
+    //allRecipeCards.innerHTML = ' ';
+    // console.log("what recipes are these", recipes)
     recipes.recipesData.forEach(recipe => {
-      // console.log("OUR RECIPE", recipe);
       allRecipeCards.insertAdjacentHTML('afterbegin', `
         <article id="recipeCard" class="recipe-card">
           <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
@@ -58,6 +58,7 @@ let domUpdates = {
   // map will always return an array of the same length as the original
 
   returnIngredientsDetails(recipe) {
+    //console.log('the recipe', recipe);
     return addNameProperty(recipe).map(ingredient => {
       return `<li>${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit} ${ingredient.name}</li>`
     }).join('');
@@ -88,7 +89,7 @@ let domUpdates = {
         event.target.classList.remove('favorite-recipe');
         user.removeFromFavorites(favoriteRecipe);
       }
-      console.log('Favorite Clicked', user);
+      //console.log('Favorite Clicked', user);
 
   },
   //4. A function that populates the favorites recipes cards to the screen and
@@ -140,7 +141,7 @@ let domUpdates = {
       user.removeFromRecipesToCook(recipeToBeCooked);
     }
 
-    console.log('COOKBOOK CLICKED', user);
+    //console.log('COOKBOOK CLICKED', user);
   },
   //6. A function that populates the cookbook recipes cards to the screen and
   //removes all recipe cards.
@@ -197,14 +198,67 @@ let domUpdates = {
       }
 
 
-    }
+    },
+    displaySearchResults(recipes, ingredientsData, user) {
+      //allRecipeCards.innerHTML = ' ';
+      //console.log("what recipes are these", recipes)
+      //console.log('recipes found', recipes);
+      recipes.forEach(specificRecipe => {
+
+        specificRecipe.forEach(recipe => {
+          console.log('recipe we want to iterate over', recipe);
+          allRecipeCards.insertAdjacentHTML('afterbegin', `
+            <article id="recipeCard" class="recipe-card">
+              <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
+              <div class="recipe-card-btn-section">
+                <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+                <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
+                <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+              </div>
+              <p id="recipeName" class="recipe-name">${recipe.name}</p>
+              <section id="${recipe.id}" class="details-background hidden">
+                <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
+                <ul>
+                ${this.returnIngredientsDetails(recipe)}
+                </ul>
+                <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
+                <ol>
+                ${this.returnInstructionDetails(recipe)}
+                </ol>
+              </section>
+            </article>
+          `)
+        })
+      })
+    },
     // console.log('VIEWMORE CLICKED');
-}
 
   //8. A function that displays recipe on the screen when a user types in
   //keywords the search bar. Should search through recipe name, ingredient names, or tags
+  searchRecipes(recipes, ingredientsData, user) {
+    allRecipeCards.innerHTML = ' ';
+    let searchQuery =  searchField.value;
+    let results = [];
+    //const nameOrIngredientResults = recipes.retrieveRecipesByNameOrIngredient(ingredientsData, searchQuery);
+    //console.log('search active')
+    //console.log(searchQuery);
+    //console.log("what recipes we working with?", recipes)
+    const tagResults = recipes.retrieveRecipesByTag(searchQuery);
+    const nameOrIngredientResults = recipes.retrieveRecipesByNameOrIngredient(ingredientsData, searchQuery);
+    //console.log(tagResults);
+    if (tagResults.length > 0) {
+      results.push(tagResults);
+    }
+    if (nameOrIngredientResults.length > 0) {
+      results.push(nameOrIngredientResults);
+
+    }
+    console.log('search results here sir', results)
+    this.displaySearchResults(results);
+
+  }
 
 
 
-
+}
 export default domUpdates;

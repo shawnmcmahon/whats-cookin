@@ -75,7 +75,7 @@ describe('Recipe Class', () => {
     ])
   });
 
-  it.only('Should contain a method that determines the names of ingredients needed', () => {
+  it('Should contain a method that determines the names of ingredients needed', () => {
     const ingredientsNames = recipe.retrieveIngredientNames();
     expect(ingredientsNames).to.eql(
     [
