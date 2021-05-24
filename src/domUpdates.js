@@ -15,6 +15,7 @@ const instructionsTag = document.querySelector('#instructions');
 const recipeCard = document.querySelector('#recipeCard');
 const viewMoreViewLessBtn = document.querySelector('#viewMoreViewLessBtn');
 const searchField = document.querySelector('#searchField');
+const searchSection = document.querySelector('#searchSection')
 
 
 
@@ -29,9 +30,11 @@ let domUpdates = {
 
   //2. A function that populates all recipe cards to the home scren
 
-  displayRecipeCards(recipes, user) {
+  displayRecipeCards(recipes, user, ingredientsData) {
     //allRecipeCards.innerHTML = ' ';
     // console.log("what recipes are these", recipes)
+    console.log("Search section", searchSection);
+    // searchSection.classlist.remove('hidden');
     user.viewHome();
     recipes.recipesData.forEach(recipe => {
       allRecipeCards.insertAdjacentHTML('afterbegin', `
@@ -48,9 +51,13 @@ let domUpdates = {
             <ul>
             ${this.returnIngredientsDetails(recipe)}
             </ul>
-            <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
+            <p data-id=${recipe.id} id="instructionsLabel" class="label">Instructions</p>
             <ol>
             ${this.returnInstructionDetails(recipe)}
+            </ol>
+            <p data-id=${recipe.id} id="instructionsLabel" class="label">Cost</p>
+            <ol>
+            $${this.returnRecipeCost(recipe, ingredientsData)}
             </ol>
           </section>
         </article>
@@ -58,6 +65,12 @@ let domUpdates = {
     })
   },
   // map will always return an array of the same length as the original
+
+  returnRecipeCost(recipe, ingredientsData) {
+    const currentRecipe = new Recipe(recipe, ingredientsData);
+    console.log("RECIPE Cost", currentRecipe.calculateRecipeCost());
+    return currentRecipe.calculateRecipeCost();
+  },
 
   returnIngredientsDetails(recipe) {
     //console.log('the recipe', recipe);
@@ -96,9 +109,9 @@ let domUpdates = {
   },
   //4. A function that populates the favorites recipes cards to the screen and
   //removes all recipe cards.
-  displayFavoriteRecipeCards(recipes, user) {
+  displayFavoriteRecipeCards(recipes, user, ingredientsData) {
     user.viewingFavorites = true;
-
+    // searchSection.classlist.remove('hidden');
 
     allRecipeCards.innerHTML = ' ';
     user.favoriteRecipes.forEach(recipe => {
@@ -120,6 +133,10 @@ let domUpdates = {
             <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
             <ol>
             ${this.returnInstructionDetails(recipe)}
+            </ol>
+            <p data-id=${recipe.id} id="instructionsLabel" class="label">Cost</p>
+            <ol>
+            $${this.returnRecipeCost(recipe, ingredientsData)}
             </ol>
           </section>
         </article>
@@ -152,8 +169,9 @@ let domUpdates = {
   //removes all recipe cards.
   //If no recipes in the cookbook available, switch the text of the cookbook button from
   // Cookbook -> No Recipes
-  displayCookbookRecipeCards(recipes, user) {
+  displayCookbookRecipeCards(recipes, user, ingredientsData) {
     user.viewHome();
+    // searchSection.classlist.add('hidden');
     allRecipeCards.innerHTML = ' ';
     user.recipesToCook.forEach(recipe => {
       // console.log("OUR RECIPE", recipe);
@@ -174,6 +192,10 @@ let domUpdates = {
             <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
             <ol>
             ${this.returnInstructionDetails(recipe)}
+            </ol>
+            <p data-id=${recipe.id} id="instructionsLabel" class="label">Cost</p>
+            <ol>
+            $${this.returnRecipeCost(recipe, ingredientsData)}
             </ol>
           </section>
         </article>
@@ -211,6 +233,7 @@ let domUpdates = {
       //console.log("what recipes are these", recipes)
       //console.log('recipes found', recipes);
       // user.viewHome();
+      // searchSection.classlist.remove('hidden');a
       recipes.forEach(specificRecipe => {
 
         specificRecipe.forEach(recipe => {
