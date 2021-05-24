@@ -67,9 +67,9 @@ function onStartUp() {
       console.log('user', user)
       globalIngredientsData = promise[1]['ingredientsData'];
       recipeRepository = new RecipeRepository(promise[2]['recipeData'])
-    
+
       domUpdates.greetUser(user);
-      domUpdates.displayRecipeCards(recipeRepository)
+      domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
     })
 }
 
@@ -106,23 +106,21 @@ function displayInstructionsButton(event) {
 function viewFavoriteRecipes(event, recipeRepository, user) {
   if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
     allRecipeCards.innerHTML = ' ';
-    domUpdates.displayFavoriteRecipeCards(recipeRepository, user)
+    domUpdates.displayFavoriteRecipeCards(recipeRepository, user, globalIngredientsData)
     }
   }
 
 function viewCookbookRecipes(event, recipeRepository, user) {
-  console.log("cookbook clicked")
   if (event.target.closest('button').id === 'cookbookBtn') {
     allRecipeCards.innerHTML = ' ';
-    domUpdates.displayCookbookRecipeCards(recipeRepository, user)
+    domUpdates.displayCookbookRecipeCards(recipeRepository, user, globalIngredientsData)
     }
   }
 
 function viewHomePage(event, recipeRepository) {
-  console.log("view home clicked")
   if (event.target.closest('button').id === 'homeBtn') {
     allRecipeCards.innerHTML = ' ';
-    domUpdates.displayRecipeCards(recipeRepository)
+    domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
     }
   }
 //Function that handles the what happens when a button is clicked
