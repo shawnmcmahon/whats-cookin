@@ -67,9 +67,9 @@ function onStartUp() {
       console.log('user', user)
       globalIngredientsData = promise[1]['ingredientsData'];
       recipeRepository = new RecipeRepository(promise[2]['recipeData'])
-    
+
       domUpdates.greetUser(user);
-      domUpdates.displayRecipeCards(recipeRepository)
+      domUpdates.displayRecipeCards(recipeRepository, user)
     })
 }
 
@@ -106,6 +106,7 @@ function displayInstructionsButton(event) {
 function viewFavoriteRecipes(event, recipeRepository, user) {
   if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
     allRecipeCards.innerHTML = ' ';
+    console.log("USER in scripts", user);
     domUpdates.displayFavoriteRecipeCards(recipeRepository, user)
     }
   }

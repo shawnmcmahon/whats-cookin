@@ -7,6 +7,15 @@ class User {
     this.pantry = user.pantry;
     this.favoriteRecipes = [];
     this.recipesToCook = [];
+    this.viewingFavorites = false;
+  }
+
+  viewFavorites() {
+    this.viewingFavorites = true;
+  }
+
+  viewHome() {
+    this.viewingFavorites = false;
   }
 
   addToFavorites(recipe) {
