@@ -41,19 +41,22 @@ class RecipeRepository {
 
 
   retrieveRecipesByNameOrIngredient(ingredientsData, ...keywords) {
-    const lowerCaseKeywords = keywords.map(keyword => keyword.toLowerCase());
-    //console.log('lower case keywords', lowerCaseKeywords)
+    const splitKeywords = keywords.map(keyword => {
+      return keyword.split(' ');
+    }).flat();
+    console.log("WHAT is this?", splitKeywords);
+    const lowerCaseKeywords = splitKeywords.map(keyword => keyword.toLowerCase());
+    console.log("LowerCaseKeywrods", lowerCaseKeywords);
     const results = lowerCaseKeywords.reduce((matchingRecipes, keyword) => {
+      console.log('KEYWORD', keyword);
       let foundIds = []
-      //console.log('keyword we want to search', keyword)
       ingredientsData.forEach(ingredient => {
-      console.log('the ingredient name to be split', ingredient.name.split(' '))
-    //  const splitIngredients = ingredient.name.split(' ');
-        if(ingredient.name.split(' ').includes(keyword)) {
-          foundIds.push(ingredient.id)
-        }})
-      //console.log('do we have ids?', foundIds);
-      //console.log('is this an array?', ingredient.name);
+        if (ingredient.name) {
+          if(ingredient.name.split(' ').includes(keyword)) {
+            foundIds.push(ingredient.id)
+          }
+        }
+      })
       this.recipesData.forEach(recipe => {
       let splitWords = recipe.name.toLowerCase().split(' ');
       //console.log('split words query', splitWords)

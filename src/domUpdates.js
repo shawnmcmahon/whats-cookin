@@ -231,7 +231,6 @@ let domUpdates = {
         })
       })
     },
-    // console.log('VIEWMORE CLICKED');
 
   //8. A function that displays recipe on the screen when a user types in
   //keywords the search bar. Should search through recipe name, ingredient names, or tags
@@ -239,10 +238,6 @@ let domUpdates = {
     allRecipeCards.innerHTML = ' ';
     let searchQuery =  searchField.value;
     let results = [];
-    //const nameOrIngredientResults = recipes.retrieveRecipesByNameOrIngredient(ingredientsData, searchQuery);
-    //console.log('search active')
-    //console.log(searchQuery);
-    //console.log("what recipes we working with?", recipes)
     const tagResults = recipes.retrieveRecipesByTag(searchQuery);
     const nameOrIngredientResults = recipes.retrieveRecipesByNameOrIngredient(ingredientsData, searchQuery);
     //console.log(tagResults);
