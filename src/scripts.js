@@ -106,13 +106,11 @@ function displayInstructionsButton(event) {
 function viewFavoriteRecipes(event, recipeRepository, user) {
   if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
     allRecipeCards.innerHTML = ' ';
-    console.log("USER in scripts", user);
     domUpdates.displayFavoriteRecipeCards(recipeRepository, user)
     }
   }
 
 function viewCookbookRecipes(event, recipeRepository, user) {
-  console.log("cookbook clicked")
   if (event.target.closest('button').id === 'cookbookBtn') {
     allRecipeCards.innerHTML = ' ';
     domUpdates.displayCookbookRecipeCards(recipeRepository, user)
@@ -120,10 +118,9 @@ function viewCookbookRecipes(event, recipeRepository, user) {
   }
 
 function viewHomePage(event, recipeRepository) {
-  console.log("view home clicked")
   if (event.target.closest('button').id === 'homeBtn') {
     allRecipeCards.innerHTML = ' ';
-    domUpdates.displayRecipeCards(recipeRepository)
+    domUpdates.displayRecipeCards(recipeRepository, user)
     }
   }
 //Function that handles the what happens when a button is clicked

@@ -205,11 +205,12 @@ let domUpdates = {
 
 
     },
+
     displaySearchResults(recipes, ingredientsData, user) {
       //allRecipeCards.innerHTML = ' ';
       //console.log("what recipes are these", recipes)
       //console.log('recipes found', recipes);
-      user.viewHome();
+      // user.viewHome();
       recipes.forEach(specificRecipe => {
 
         specificRecipe.forEach(recipe => {
@@ -254,19 +255,20 @@ let domUpdates = {
       if (nameOrIngredientResults.length > 0) {
         results.push(nameOrIngredientResults);
       }
-      this.displaySearchResults(results);
+      this.displaySearchResults(results, ingredientsData, user);
     }
 
     if (user.viewingFavorites) {
       const favoriteTagResults = user.filterFavoriteRecipesByTags(searchQuery);
       const favoriteNameOrIngredientsResults = user.retrieveFavoritesByNameOrIngredient(ingredientsData, searchQuery);
+
       if (favoriteTagResults.length > 0) {
         results.push(favoriteTagResults);
       }
       if (favoriteNameOrIngredientsResults.length > 0) {
         results.push(favoriteNameOrIngredientsResults);
       }
-      this.displayFavoriteRecipeCards(results, user);
+      this.displaySearchResults(results, ingredientsData, user);
     }
     // console.log('search results here sir', results)
   }
