@@ -1,7 +1,7 @@
 # What's Cookin'? - Turing Mod 2 FE Project
 
 
-The "What's Cookin" site is perfect for cooking enthusiasts and those that are coooking curious. It is a website that uses hosted datasets to allow a randomized user to scroll through a list of recipes. The user can "Favorite" them, add them to a list of "Recipes to cook", review their ingredients and instructions, or search recipes by names and tags.
+The "What's Cookin" site is perfect for cooking enthusiasts and those that are coooking curious. It is a website that uses hosted datasets to allow a randomized user to scroll through a list of recipes. The user can "Favorite" them, add them to a list of "Recipes to cook", review their ingredients and instructions, review a recipe's cost, or search recipes by names and tags.
 
 ## How To Use
 
@@ -9,13 +9,24 @@ The "What's Cookin" site is perfect for cooking enthusiasts and those that are c
 
 At that time a user will be able to:
 
-1. Click the link to be taken to the live site
-2. See recipe cards populate on the home screen
+1. Click the link to be taken to the live site.
+2. See recipe cards populate on the home screen.
 3. Click on the "Details" button on any recipe card to see instructions, ingredients, and cost.
 4. Click the "Cook" button to add a recipe to a section that saves recipes to cook.
 5. Click the "favorite" button to add a recipe to a sectiont that saves favorite recipes.
 6. Search for specific recipes, in the search field at the top of each page, by tags, ingredient name, or recipe name.
 
+
+## Next Steps
+
+Additional enhancements could include:
+
+- Determine what ingredients are needed based on what ingredients a user has in their pantry.
+- Calculate the amount of specific ingredients a user would need to buy.
+- Calculate the total average cost of a grocery list, based on the ingredients needed.
+- A feature for users to be able to add reviews to each recipe.
+- A feature for users to email recipes to themselves or a friend.
+- Personalized user accounts, so that a user could return again and again and view their selections.
 
 ## Techonologies Implemented
 
