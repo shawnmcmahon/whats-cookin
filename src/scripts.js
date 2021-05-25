@@ -20,7 +20,7 @@ const detailsBackground = document.querySelector('#detailsBackground')
 const viewFavoriteRecipesBtn = document.querySelector('#viewFavoriteRecipesBtn');
 const viewHomeBtn = document.querySelector('#homeBtn');
 const viewCookbookRecipesBtn = document.querySelector('#cookbookBtn');
-const viewMoreViewLessBtn = document.querySelector('#detailsBtn');
+const detailsBtn = document.querySelector('#detailsBtn');
 
 const searchField = document.querySelector('#searchField');
 
@@ -73,6 +73,9 @@ function onStartUp() {
     })
 }
 
+
+ // Refactor all of these function that include this if else logic...we're doing
+ // nothing with it and when we invoke the function we write it again
 function addToFavoritesButton(event) {
   if (event.target.closest('button').id === 'addToFavoritesBtn') {
     if (recipeCard.classList.contains('favorite-recipe')) {
@@ -94,13 +97,16 @@ function addToCookbookButton(event) {
 }
 
 function displayInstructionsButton(event) {
+  // Are we actually doing anything with this logic?
+  // We're checking if the target id contains the class
+  // But then no matter what we're calling the same function
   if (event.target.closest('button').id === 'detailsBtn') {
-    // if (viewMoreViewLessBtn.classList.contains('display-instructions')) {
-    //   domUpdates.displayInstructions(event, recipeRepository);
-    // } else if(!viewMoreViewLessBtn.classList.contains('display-instructions')) {
-    //   domUpdates.displayInstructions(event, recipeRepository);
-    // }
-    domUpdates.displayInstructions(event, recipeRepository)
+    if (detailsBtn.classList.contains('display-instructions')) {
+      domUpdates.displayInstructions(event, recipeRepository);
+    } else if(!detailsBtn.classList.contains('display-instructions')) {
+      domUpdates.displayInstructions(event, recipeRepository);
+    }
+    // domUpdates.displayInstructions(event, recipeRepository)
   }
 }
 

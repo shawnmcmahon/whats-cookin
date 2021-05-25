@@ -38,11 +38,13 @@ let domUpdates = {
         <article id="recipeCard" class="recipe-card">
           <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
           <div class="recipe-card-btn-section">
-            <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">Details</button>
+            <button data-id=${recipe.id} id="detailsBtn" type="button" name="button">Details</button>
             <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
             <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
           </div>
-          <p id="recipeName" class="recipe-name">${recipe.name}</p>
+          <div class="recipe-name-container">
+            <p id="recipeName" class="recipe-name">${recipe.name}</p>
+          </div>
           <section id="${recipe.id}" class="details-background hidden">
             <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
             <ul>
@@ -207,16 +209,25 @@ let domUpdates = {
     });
 
     const detailsBackground = document.getElementById(`${clickedRecipe.id}`);
+    const detailsBtn = document.getElementById('detailsBtn');
 
       if (!detailsBackground.classList.contains('hidden')) {
-        // viewMoreViewLessBtn.classList.remove('display-instructions');
+        detailsBtn.classList.remove('display-instructions');
         detailsBackground.classList.add('hidden');
       } else if (detailsBackground.classList.contains('hidden')) {
-        // viewMoreViewLessBtn.classList.add('display-instructions');
+        detailsBtn.classList.add('display-instructions');
         detailsBackground.classList.remove('hidden');
       }
 
+    this.selectedRecipeView();
+    },
 
+    selectedRecipeView() {
+      if (!allRecipeCards.classList.contains('selected-view')) {
+        allRecipeCards.classList.add('selected-view');
+      } else {
+        allRecipeCards.classList.remove('selected-view');
+      }
     },
 
     displaySearchResults(recipes, ingredientsData, user) {
