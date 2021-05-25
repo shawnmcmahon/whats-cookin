@@ -14,15 +14,15 @@ class Recipe {
 
   retrieveIngredientNames() {
     const ingredientIds = this.ingredients.map(ingredient => ingredient.id);
-    const ingredientNames = [];
-    this.ingredientsData.forEach(ingredient => {
+    const ingredientNames = this.ingredientsData.reduce((acc, ingredient) => {
       ingredientIds.forEach(id => {
         if (id === ingredient.id) {
-          ingredientNames.push(ingredient.name);
+          acc.push(ingredient.name);
         }
 
       })
-    })
+      return acc;
+    }, [])
     return ingredientNames;
   }
 
@@ -34,7 +34,7 @@ class Recipe {
         if (ingredient.id === item.id) {
           recipeCost += (item.estimatedCostInCents * ingredient.quantity.amount) / 100;
         }
-        
+
       });
     })
       return parseFloat(recipeCost.toFixed(2));

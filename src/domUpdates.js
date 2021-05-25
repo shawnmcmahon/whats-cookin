@@ -1,6 +1,6 @@
 import Recipe from './classes/Recipe'
-import { addNameProperty } from './scripts'
 import User from './classes/User'
+import { addNameProperty } from './scripts'
 const greeting = document.querySelector('#greeting');
 const allRecipeCards = document.querySelector('#allRecipeCards');
 const ingredientsTag = document.querySelector('#ingredients');
@@ -234,6 +234,7 @@ let domUpdates = {
       if (tagResults.length > 0) {
         results.push(tagResults);
       }
+      
       if (nameOrIngredientResults.length > 0) {
         results.push(nameOrIngredientResults);
       }
@@ -247,6 +248,7 @@ let domUpdates = {
       if (favoriteTagResults.length > 0) {
         results.push(favoriteTagResults);
       }
+
       if (favoriteNameOrIngredientsResults.length > 0) {
         results.push(favoriteNameOrIngredientsResults);
       }
