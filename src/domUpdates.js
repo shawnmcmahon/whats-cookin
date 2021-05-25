@@ -84,6 +84,7 @@ let domUpdates = {
   displayFavoriteRecipeCards(recipes, user, ingredientsData) {
     allRecipeCards.innerHTML = ' ';
     user.favoriteRecipes.forEach(recipe => {
+
         allRecipeCards.insertAdjacentHTML('afterbegin', `
         <article id="recipeCard" class="recipe-card">
         <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
@@ -168,6 +169,7 @@ let domUpdates = {
     });
     const detailsBackground = document.getElementById(`${clickedRecipe.id}`);
     const detailsBtn = document.getElementById('detailsBtn');
+
       if (!detailsBackground.classList.contains('hidden')) {
         detailsBtn.classList.remove('display-instructions');
         detailsBackground.classList.add('hidden');
