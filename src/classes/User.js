@@ -45,9 +45,9 @@ class User {
     return favoriteRecipes.retrieveRecipesByTag(...tags);
   }
 
-retrieveFavoritesByNameOrIngredient(ingredientsData, ...keywords) {
-  let favoriteRecipes = new RecipeRepository(this.favoriteRecipes);
-  return favoriteRecipes.retrieveRecipesByNameOrIngredient(ingredientsData, ...keywords);
+  retrieveFavoritesByNameOrIngredient(ingredientsData, ...keywords) {
+    let favoriteRecipes = new RecipeRepository(this.favoriteRecipes);
+    return favoriteRecipes.retrieveRecipesByNameOrIngredient(ingredientsData, ...keywords);
   }
 
 }
