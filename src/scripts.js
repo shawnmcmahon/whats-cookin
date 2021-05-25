@@ -59,6 +59,7 @@ searchField.addEventListener('keypress', function(event) {
 function onStartUp() {
   apiCalls.getData()
     .then((promise) => {
+      console.log(promise);
       user = new User(promise[0]['usersData'][0]);
       globalIngredientsData = promise[1]['ingredientsData'];
       recipeRepository = new RecipeRepository(promise[2]['recipeData']);

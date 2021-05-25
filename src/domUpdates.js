@@ -29,7 +29,7 @@ let domUpdates = {
           <div class="recipe-name-container">
             <p id="recipeName" class="recipe-name">${recipe.name}</p>
           </div>
-          <section id="${recipe.id}" class="details-background hidden">
+          <section id="${recipe.id}detailsBackground" class="details-background hidden">
             <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
             <ul>
             ${this.returnIngredientsDetails(recipe)}
@@ -94,7 +94,7 @@ let domUpdates = {
         <button data-id=${recipe.id} id="addToFavoritesBtn" class="favorite-recipe" type="button" name="button">Favorites</button>
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
-        <section id="${recipe.id}" class="details-background hidden">
+        <section id="${recipe.id}detailsBackground" class="details-background hidden">
         <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
         <ul>
         ${this.returnIngredientsDetails(recipe)}
@@ -142,7 +142,7 @@ let domUpdates = {
             <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
           </div>
           <p id="recipeName" class="recipe-name">${recipe.name}</p>
-          <section id="${recipe.id}" class="details-background hidden">
+          <section id="${recipe.id}detailsBackground" class="details-background hidden">
             <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
             <ul>
             ${this.returnIngredientsDetails(recipe)}
@@ -167,7 +167,7 @@ let domUpdates = {
         return recipe;
       }
     });
-    const detailsBackground = document.getElementById(`${clickedRecipe.id}`);
+    const detailsBackground = document.getElementById(`${clickedRecipe.id}detailsBackground`);
     const detailsBtn = document.getElementById('detailsBtn');
 
       if (!detailsBackground.classList.contains('hidden')) {
@@ -201,7 +201,7 @@ let domUpdates = {
                 <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
               </div>
               <p id="recipeName" class="recipe-name">${recipe.name}</p>
-              <section id="${recipe.id}" class="details-background hidden">
+              <section id="${recipe.id}detailsBackground" class="details-background hidden">
                 <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
                 <ul>
                 ${this.returnIngredientsDetails(recipe)}
