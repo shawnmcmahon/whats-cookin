@@ -20,6 +20,7 @@ class Recipe {
         if (id === ingredient.id) {
           ingredientNames.push(ingredient.name);
         }
+
       })
     })
     return ingredientNames;
@@ -33,6 +34,7 @@ class Recipe {
         if (ingredient.id === item.id) {
           recipeCost += (item.estimatedCostInCents * ingredient.quantity.amount) / 100;
         }
+        
       });
     })
       return parseFloat(recipeCost.toFixed(2));

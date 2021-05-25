@@ -7,24 +7,18 @@ import User from './classes/User'
 let recipeRepository, user;
 let globalIngredientsData = {}
 
-//Query Selectors
 const favoriteBtn = document.querySelector('.favoriteRecipesBtn');
 const cookbookBtn = document.querySelector('.cookbookBtn');
 const searchInput = document.querySelector('#searchField');
 const allRecipeCards = document.querySelector('#allRecipeCards');
-//const allRecipeCardsBackground = document.querySelector('.allRecipeCards');
-//const detailsBackground = document.querySelector('.detailsBackground');
 const recipeCard = document.querySelector('#recipeCard');
 const detailsBackground = document.querySelector('#detailsBackground')
-
 const viewFavoriteRecipesBtn = document.querySelector('#viewFavoriteRecipesBtn');
 const viewHomeBtn = document.querySelector('#homeBtn');
 const viewCookbookRecipesBtn = document.querySelector('#cookbookBtn');
 const detailsBtn = document.querySelector('#detailsBtn');
-
 const searchField = document.querySelector('#searchField');
 
-//Event Listeners
 window.onload = onStartUp();
 
 allRecipeCards.addEventListener('click', function() {
@@ -53,29 +47,17 @@ searchField.addEventListener('keypress', function(event) {
   }
 })
 
-
-
-
-//Methods
-
 function onStartUp() {
   apiCalls.getData()
     .then((promise) => {
-
-      //user = new User(userData[(Math.floor(Math.random() * userData.length))]);
-      user = new User(promise[0]['usersData'][0])
-      console.log('user', user)
+      user = new User(promise[0]['usersData'][0]);
       globalIngredientsData = promise[1]['ingredientsData'];
-      recipeRepository = new RecipeRepository(promise[2]['recipeData'])
-
+      recipeRepository = new RecipeRepository(promise[2]['recipeData']);
       domUpdates.greetUser(user);
-      domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
+      domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData);
     })
 }
 
-
- // Refactor all of these function that include this if else logic...we're doing
- // nothing with it and when we invoke the function we write it again
 function addToFavoritesButton(event) {
   if (event.target.closest('button').id === 'addToFavoritesBtn') {
     if (recipeCard.classList.contains('favorite-recipe')) {
@@ -97,16 +79,13 @@ function addToCookbookButton(event) {
 }
 
 function displayInstructionsButton(event) {
-  // Are we actually doing anything with this logic?
-  // We're checking if the target id contains the class
-  // But then no matter what we're calling the same function
   if (event.target.closest('button').id === 'detailsBtn') {
     if (detailsBtn.classList.contains('display-instructions')) {
       domUpdates.displayInstructions(event, recipeRepository);
     } else if(!detailsBtn.classList.contains('display-instructions')) {
       domUpdates.displayInstructions(event, recipeRepository);
     }
-    // domUpdates.displayInstructions(event, recipeRepository)
+
   }
 }
 
@@ -115,6 +94,7 @@ function viewFavoriteRecipes(event, recipeRepository, user) {
     allRecipeCards.innerHTML = ' ';
     domUpdates.displayFavoriteRecipeCards(recipeRepository, user, globalIngredientsData)
     }
+
   }
 
 function viewCookbookRecipes(event, recipeRepository, user) {
@@ -122,6 +102,7 @@ function viewCookbookRecipes(event, recipeRepository, user) {
     allRecipeCards.innerHTML = ' ';
     domUpdates.displayCookbookRecipeCards(recipeRepository, user, globalIngredientsData)
     }
+
   }
 
 function viewHomePage(event, recipeRepository) {
@@ -129,29 +110,10 @@ function viewHomePage(event, recipeRepository) {
     allRecipeCards.innerHTML = ' ';
     domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
     }
+
   }
-//Function that handles the what happens when a button is clicked
-//(Consider having one big if, else conditional rather than multiple functions
-//for each button's event listener)
 
-
-
-//A function that adds a recipe to the cookbook when the cook button is pressed
-// function addRecipeToCookBook(event) {
-//   let clickedRecipe = recipeRepository.recipeData.find(recipe => {
-//     if (recipe.id === Number(event.target.dataset.id) {
-//       return recipe
-//     })
-//   });
-//   return clickedRecipe
-// }
-//A function that adds a recipe to favorites when the favorite button is pressed
-
-
-//A function that adds the ingredient name to the ingredient so it can be displayed
-//on the details page
 export const addNameProperty = recipe => {
-  //console.log('do you have what we need?', recipe.ingredients)
   let ingredientInfo = recipe.ingredients.map(ingredient => {
     const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
     return {
