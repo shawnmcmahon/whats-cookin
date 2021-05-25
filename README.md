@@ -1,10 +1,11 @@
 # What's Cookin'? - Turing Mod 2 FE Project
 
-A site for the cooking enthusiasts of your household to peruse an extensive list of recipes.
+
+The "What's Cookin" site is perfect for cooking enthusiasts and those that are coooking curious. It is a website that uses hosted datasets to allow a randomized user to scroll through a list of recipes. The user can "Favorite" them, add them to a list of "Recipes to cook", review their ingredients and instructions, or search recipes by names and tags.
 
 ## How To Use
 
-### Future additions to this project will provide a deployable link
+### In the future, a deployable link will be available...
 
 At that time a user will be able to:
 
@@ -16,14 +17,17 @@ At that time a user will be able to:
 6. Search for specific recipes, in the search field at the top of each page, by tags, ingredient name, or recipe name.
 
 
-## About
+## Techonologies Implemented
 
-The "What's Cookin" project is a website that uses hosted datasets to allow a randomized user to scroll through a list of recipes and "Favorite" them, add them to a list of "Recipes to cook", review their ingredients and instructions, or search recipes by names and tags
-
-## Techonologies Used
+- JavaScript
+- Git & GitHub
+- Mocha & Chai
+- Local Server
+- Webpack
+- APIs
 
 ## Contributors 
 
-- Shawn McMahon
-- Shauna Myers
+- [Shawn McMahon](https://github.com/ShawnMcMahon)
+- [Shauna Myers](https://github.com/ShaunaMyers)
 
