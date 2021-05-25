@@ -44,7 +44,7 @@ viewCookbookRecipesBtn.addEventListener('click', function() {
 
 viewHomeBtn.addEventListener('click', function() {
 
-  // viewHomePage(event, recipeRepository, user);
+   // viewHomePage(event, recipeRepository, user);
   retrieveButtonInstructions(event, recipeRepository, user)
 
 })
@@ -69,24 +69,29 @@ function onStartUp() {
 
 function retrieveButtonInstructions(event, recipeRepository, user) {
   if (event.target.closest('button').id === 'addToFavoritesBtn') {
-    if (recipeCard.classList.contains('favorite-recipe')) {
-      domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
-    } else if(!recipeCard.classList.contains('favorite-recipe')) {
-      domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
-    }
+    // if (recipeCard.classList.contains('favorite-recipe')) {
+    //   domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
+    // } else if(!recipeCard.classList.contains('favorite-recipe')) {
+    //   domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
+    // }
+    domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
+
   } else if (event.target.closest('button').id === 'addToCookbookBtn') {
-      if (recipeCard.classList.contains('favorite-recipe')) {
-        domUpdates.addToCookbook(event, recipeRepository, user);
-      } else if(!recipeCard.classList.contains('favorite-recipe')) {
-        domUpdates.addToCookbook(event, recipeRepository, user)
-      }
+      // if (recipeCard.classList.contains('favorite-recipe')) {
+      //   domUpdates.addToCookbook(event, recipeRepository, user);
+      // } else if(!recipeCard.classList.contains('favorite-recipe')) {
+      //   domUpdates.addToCookbook(event, recipeRepository, user)
+      // }
+      domUpdates.addToCookbook(event, recipeRepository, user)
 
   } else if (event.target.closest('button').id === 'detailsBtn') {
-      if (detailsBtn.classList.contains('display-instructions')) {
-        domUpdates.displayInstructions(event, recipeRepository);
-      } else if(!detailsBtn.classList.contains('display-instructions')) {
-        domUpdates.displayInstructions(event, recipeRepository);
-      }
+      // if (detailsBtn.classList.contains('display-instructions')) {
+      //   domUpdates.displayInstructions(event, recipeRepository);
+      // } else if(!detailsBtn.classList.contains('display-instructions')) {
+      //   domUpdates.displayInstructions(event, recipeRepository);
+      // }
+
+      domUpdates.displayInstructions(event, recipeRepository);
 
   } else if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
     user.viewFavorites()

@@ -93,7 +93,7 @@ let domUpdates = {
         <button data-id=${recipe.id} id="addToFavoritesBtn" class="favorite-recipe" type="button" name="button">Favorites</button>
         </div>
         <p id="recipeName" class="recipe-name">${recipe.name}</p>
-        <section id="detailsBackgrnd" class="details-background hidden">
+        <section id="${recipe.id}" class="details-background hidden">
         <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
         <ul>
         ${this.returnIngredientsDetails(recipe)}
@@ -141,7 +141,7 @@ let domUpdates = {
             <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
           </div>
           <p id="recipeName" class="recipe-name">${recipe.name}</p>
-          <section id="detailsBackgrnd" class="details-background hidden">
+          <section id="${recipe.id}" class="details-background hidden">
             <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
             <ul>
             ${this.returnIngredientsDetails(recipe)}
@@ -168,7 +168,6 @@ let domUpdates = {
     });
     const detailsBackground = document.getElementById(`${clickedRecipe.id}`);
     const detailsBtn = document.getElementById('detailsBtn');
-
       if (!detailsBackground.classList.contains('hidden')) {
         detailsBtn.classList.remove('display-instructions');
         detailsBackground.classList.add('hidden');
@@ -180,45 +179,45 @@ let domUpdates = {
     this.selectedRecipeView();
     },
 
-  selectedRecipeView() {
-    if (!allRecipeCards.classList.contains('selected-view')) {
-      allRecipeCards.classList.add('selected-view');
-    } else {
-      allRecipeCards.classList.remove('selected-view');
-    }
-  },
+    selectedRecipeView() {
+      if (!allRecipeCards.classList.contains('selected-view')) {
+        allRecipeCards.classList.add('selected-view');
+      } else {
+        allRecipeCards.classList.remove('selected-view');
+      }
+    },
 
-  displaySearchResults(recipes, ingredientsData, user) {
-    recipes.forEach(specificRecipe => {
-      specificRecipe.forEach(recipe => {
-        allRecipeCards.insertAdjacentHTML('afterbegin', `
-          <article id="recipeCard" class="recipe-card">
-            <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
-            <div class="recipe-card-btn-section">
-              <button data-id=${recipe.id} id="detailsBtn" type="button" name="button">Details</button>
-              <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
-              <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
-            </div>
-            <p id="recipeName" class="recipe-name">${recipe.name}</p>
-            <section id="${recipe.id}" class="details-background hidden">
-              <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
-              <ul>
-              ${this.returnIngredientsDetails(recipe)}
-              </ul>
-              <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
-              <ol>
-              ${this.returnInstructionDetails(recipe)}
-              </ol>
-              <p data-id=${recipe.id} id="instructionsLabel" class="label">Cost</p>
-              <ol>
-              $${this.returnRecipeCost(recipe, ingredientsData)}
-              </ol>
-            </section>
-          </article>
-        `)
+    displaySearchResults(recipes, ingredientsData, user) {
+      recipes.forEach(specificRecipe => {
+        specificRecipe.forEach(recipe => {
+          allRecipeCards.insertAdjacentHTML('afterbegin', `
+            <article id="recipeCard" class="recipe-card">
+              <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
+              <div class="recipe-card-btn-section">
+                <button data-id=${recipe.id} id="detailsBtn" type="button" name="button">Details</button>
+                <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
+                <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
+              </div>
+              <p id="recipeName" class="recipe-name">${recipe.name}</p>
+              <section id="${recipe.id}" class="details-background hidden">
+                <p data-id=${recipe.id} id="ingredientsLabel" class="label">Ingredients</p>
+                <ul>
+                ${this.returnIngredientsDetails(recipe)}
+                </ul>
+                <p data-id=${recipe.id} id="instructionsLabel" class="label">instructions</p>
+                <ol>
+                ${this.returnInstructionDetails(recipe)}
+                </ol>
+                <p data-id=${recipe.id} id="instructionsLabel" class="label">Cost</p>
+                <ol>
+                $${this.returnRecipeCost(recipe, ingredientsData)}
+                </ol>
+              </section>
+            </article>
+          `)
+        })
       })
-    })
-  },
+    },
 
   searchRecipes(recipes, ingredientsData, user) {
     allRecipeCards.innerHTML = ' ';
