@@ -22,22 +22,31 @@ const searchField = document.querySelector('#searchField');
 window.onload = onStartUp();
 
 allRecipeCards.addEventListener('click', function() {
-  displayInstructionsButton(event);
-  addToFavoritesButton(event);
-  addToCookbookButton(event);
+  // displayInstructionsButton(event);
+  // addToFavoritesButton(event);
+  // addToCookbookButton(event);
+  retrieveButtonInstructions(event, recipeRepository, user)
 
 })
 
 viewFavoriteRecipesBtn.addEventListener('click', function() {
-  viewFavoriteRecipes(event, recipeRepository, user);
+  // viewFavoriteRecipes(event, recipeRepository, user);
+
+  retrieveButtonInstructions(event, recipeRepository, user)
+
 })
 
 viewCookbookRecipesBtn.addEventListener('click', function() {
-  viewCookbookRecipes(event, recipeRepository, user);
+  // viewCookbookRecipes(event, recipeRepository, user);
+  retrieveButtonInstructions(event, recipeRepository, user)
+
 })
 
 viewHomeBtn.addEventListener('click', function() {
-  viewHomePage(event, recipeRepository, user);
+
+  // viewHomePage(event, recipeRepository, user);
+  retrieveButtonInstructions(event, recipeRepository, user)
+
 })
 
 searchField.addEventListener('keypress', function(event) {
@@ -58,60 +67,94 @@ function onStartUp() {
     })
 }
 
-function addToFavoritesButton(event) {
+function retrieveButtonInstructions(event, recipeRepository, user) {
   if (event.target.closest('button').id === 'addToFavoritesBtn') {
     if (recipeCard.classList.contains('favorite-recipe')) {
       domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
     } else if(!recipeCard.classList.contains('favorite-recipe')) {
       domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
     }
-  }
-}
+  } else if (event.target.closest('button').id === 'addToCookbookBtn') {
+      if (recipeCard.classList.contains('favorite-recipe')) {
+        domUpdates.addToCookbook(event, recipeRepository, user);
+      } else if(!recipeCard.classList.contains('favorite-recipe')) {
+        domUpdates.addToCookbook(event, recipeRepository, user)
+      }
 
-function addToCookbookButton(event) {
-  if (event.target.closest('button').id === 'addToCookbookBtn') {
-    if (recipeCard.classList.contains('favorite-recipe')) {
-      domUpdates.addToCookbook(event, recipeRepository, user);
-    } else if(!recipeCard.classList.contains('favorite-recipe')) {
-      domUpdates.addToCookbook(event, recipeRepository, user)
-    }
-  }
-}
+  } else if (event.target.closest('button').id === 'detailsBtn') {
+      if (detailsBtn.classList.contains('display-instructions')) {
+        domUpdates.displayInstructions(event, recipeRepository);
+      } else if(!detailsBtn.classList.contains('display-instructions')) {
+        domUpdates.displayInstructions(event, recipeRepository);
+      }
 
-function displayInstructionsButton(event) {
-  if (event.target.closest('button').id === 'detailsBtn') {
-    if (detailsBtn.classList.contains('display-instructions')) {
-      domUpdates.displayInstructions(event, recipeRepository);
-    } else if(!detailsBtn.classList.contains('display-instructions')) {
-      domUpdates.displayInstructions(event, recipeRepository);
-    }
-
-  }
-}
-
-function viewFavoriteRecipes(event, recipeRepository, user) {
-  if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
+  } else if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
     allRecipeCards.innerHTML = ' ';
     domUpdates.displayFavoriteRecipeCards(recipeRepository, user, globalIngredientsData)
-    }
-
-  }
-
-function viewCookbookRecipes(event, recipeRepository, user) {
-  if (event.target.closest('button').id === 'cookbookBtn') {
+  } else if (event.target.closest('button').id === 'cookbookBtn') {
     allRecipeCards.innerHTML = ' ';
     domUpdates.displayCookbookRecipeCards(recipeRepository, user, globalIngredientsData)
-    }
-
-  }
-
-function viewHomePage(event, recipeRepository) {
-  if (event.target.closest('button').id === 'homeBtn') {
+  } else if (event.target.closest('button').id === 'homeBtn') {
     allRecipeCards.innerHTML = ' ';
     domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
     }
 
-  }
+
+}
+//
+// function addToFavoritesButton(event) {
+//   if (event.target.closest('button').id === 'addToFavoritesBtn') {
+//     if (recipeCard.classList.contains('favorite-recipe')) {
+//       domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
+//     } else if(!recipeCard.classList.contains('favorite-recipe')) {
+//       domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
+//     }
+//   }
+// }
+//
+// function addToCookbookButton(event) {
+//   if (event.target.closest('button').id === 'addToCookbookBtn') {
+//     if (recipeCard.classList.contains('favorite-recipe')) {
+//       domUpdates.addToCookbook(event, recipeRepository, user);
+//     } else if(!recipeCard.classList.contains('favorite-recipe')) {
+//       domUpdates.addToCookbook(event, recipeRepository, user)
+//     }
+//   }
+// }
+//
+// function displayInstructionsButton(event) {
+//   if (event.target.closest('button').id === 'detailsBtn') {
+//     if (detailsBtn.classList.contains('display-instructions')) {
+//       domUpdates.displayInstructions(event, recipeRepository);
+//     } else if(!detailsBtn.classList.contains('display-instructions')) {
+//       domUpdates.displayInstructions(event, recipeRepository);
+//     }
+//   }
+// }
+//
+// function viewFavoriteRecipes(event, recipeRepository, user) {
+//   if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
+//     allRecipeCards.innerHTML = ' ';
+//     domUpdates.displayFavoriteRecipeCards(recipeRepository, user, globalIngredientsData)
+//     }
+//
+//   }
+//
+// function viewCookbookRecipes(event, recipeRepository, user) {
+//   if (event.target.closest('button').id === 'cookbookBtn') {
+//     allRecipeCards.innerHTML = ' ';
+//     domUpdates.displayCookbookRecipeCards(recipeRepository, user, globalIngredientsData)
+//     }
+//
+//   }
+//
+// function viewHomePage(event, recipeRepository) {
+//   if (event.target.closest('button').id === 'homeBtn') {
+//     allRecipeCards.innerHTML = ' ';
+//     domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
+//     }
+//
+//   }
 
 export const addNameProperty = recipe => {
   let ingredientInfo = recipe.ingredients.map(ingredient => {
