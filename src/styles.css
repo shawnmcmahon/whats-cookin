@@ -17,6 +17,7 @@ section {
   display: flex;
   font-size: 350%;
   justify-content: center;
+  margin-top: 4%;
 }
 
 .nav-btns-section {
@@ -46,6 +47,7 @@ button {
   border-radius: 30px 30px 30px 30px;
   font-size: 140%;
   margin: 3%;
+  outline: none;
   padding: 2% 6%;
 }
 
@@ -66,9 +68,10 @@ div > button {
 
 .recipe-card {
   align-items: center;
-  background-color: rgba(242, 244, 249, 0.4);
+  background-color: rgba(242, 244, 249, 0.6);
   /* background-color: #f2f4f9; */
-  border: 3px solid #000000;
+  border: 1px solid black;
+  border-radius: 15px 15px 15px 15px;
   display: flex;
   flex-direction: column;
   height: auto;
@@ -87,14 +90,14 @@ div > button {
 }
 
 .recipe-image {
-  border: 2px solid red;
+  border-radius: 15px 15px 0 0;
   height: 300px;
   width: 600px;
 }
 
 
 .details-background {
-  background-color: rgba(242, 244, 249, 0.4);
+  background-color: rgba(242, 244, 249, 0.0);
   display: flex;
   flex-direction: column;
   font-size: 180%;

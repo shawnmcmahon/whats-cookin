@@ -38,7 +38,7 @@ let domUpdates = {
         <article id="recipeCard" class="recipe-card">
           <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
           <div class="recipe-card-btn-section">
-            <button data-id=${recipe.id} id="detailsBtn" type="button" name="button">Details</button>
+            <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">Details</button>
             <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
             <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
           </div>
