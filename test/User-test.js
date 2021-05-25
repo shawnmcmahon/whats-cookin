@@ -184,7 +184,7 @@ describe('User Class', () => {
 
     it('Should contain a method that adds a recipe to the favoriteRecipes property', () => {
       user.addToFavorites(sampleRecipesData[0]);
-      expect(user.favoriteRecipes).to.eql(sampleRecipesData[0])
+      expect(user.favoriteRecipes).to.eql([sampleRecipesData[0]])
     })
 
     it('Should contain a method that removes a recipe from the favoriteRecipes property', () => {
@@ -553,8 +553,7 @@ describe('User Class', () => {
     it('Should contain a method that retrieves a recipes from favorite recipes', () => {
       user.addToFavorites(sampleRecipesData[0]);
       user.addToFavorites(sampleRecipesData[1]);
-      const favoriteRecipes = user.retrieveFavoritesByNameOrIngredient(sampleIngredientsData, "Chocolate", "Garlic")
-      console.log('favorites', favoriteRecipes);
+      const favoriteRecipes = user.retrieveFavoritesByNameOrIngredient(sampleIngredientsData, "Chocolate", "Garlic");
       expect(user.favoriteRecipes).to.eql([{
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",

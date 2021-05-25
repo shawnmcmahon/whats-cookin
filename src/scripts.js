@@ -7,151 +7,82 @@ import User from './classes/User'
 let recipeRepository, user;
 let globalIngredientsData = {}
 
-//Query Selectors
 const favoriteBtn = document.querySelector('.favoriteRecipesBtn');
 const cookbookBtn = document.querySelector('.cookbookBtn');
 const searchInput = document.querySelector('#searchField');
 const allRecipeCards = document.querySelector('#allRecipeCards');
-//const allRecipeCardsBackground = document.querySelector('.allRecipeCards');
-//const detailsBackground = document.querySelector('.detailsBackground');
 const recipeCard = document.querySelector('#recipeCard');
 const detailsBackground = document.querySelector('#detailsBackground')
-
 const viewFavoriteRecipesBtn = document.querySelector('#viewFavoriteRecipesBtn');
 const viewHomeBtn = document.querySelector('#homeBtn');
 const viewCookbookRecipesBtn = document.querySelector('#cookbookBtn');
 const detailsBtn = document.querySelector('#detailsBtn');
-
 const searchField = document.querySelector('#searchField');
 
-//Event Listeners
 window.onload = onStartUp();
 
 allRecipeCards.addEventListener('click', function() {
-  displayInstructionsButton(event);
-  addToFavoritesButton(event);
-  addToCookbookButton(event);
+  retrieveButtonInstructions(event, recipeRepository, user)
 
 })
 
 viewFavoriteRecipesBtn.addEventListener('click', function() {
-  viewFavoriteRecipes(event, recipeRepository, user);
+  retrieveButtonInstructions(event, recipeRepository, user)
+
 })
 
 viewCookbookRecipesBtn.addEventListener('click', function() {
-  viewCookbookRecipes(event, recipeRepository, user);
+  retrieveButtonInstructions(event, recipeRepository, user)
+
 })
 
 viewHomeBtn.addEventListener('click', function() {
-  viewHomePage(event, recipeRepository, user);
+  retrieveButtonInstructions(event, recipeRepository, user)
+
 })
 
 searchField.addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
-
   domUpdates.searchRecipes(recipeRepository, globalIngredientsData, user);
   }
+
 })
-
-
-
-
-//Methods
 
 function onStartUp() {
   apiCalls.getData()
     .then((promise) => {
-
-      //user = new User(userData[(Math.floor(Math.random() * userData.length))]);
-      user = new User(promise[0]['usersData'][0])
-      console.log('user', user)
+      console.log(promise);
+      user = new User(promise[0]['usersData'][0]);
       globalIngredientsData = promise[1]['ingredientsData'];
-      recipeRepository = new RecipeRepository(promise[2]['recipeData'])
-
+      recipeRepository = new RecipeRepository(promise[2]['recipeData']);
       domUpdates.greetUser(user);
-      domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
+      domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData);
     })
 }
 
-
- // Refactor all of these function that include this if else logic...we're doing
- // nothing with it and when we invoke the function we write it again
-function addToFavoritesButton(event) {
+function retrieveButtonInstructions(event, recipeRepository, user) {
   if (event.target.closest('button').id === 'addToFavoritesBtn') {
-    if (recipeCard.classList.contains('favorite-recipe')) {
-      domUpdates.addToFavoriteRecipes(event, recipeRepository, user);
-    } else if(!recipeCard.classList.contains('favorite-recipe')) {
-      domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
-    }
-  }
-}
-
-function addToCookbookButton(event) {
-  if (event.target.closest('button').id === 'addToCookbookBtn') {
-    if (recipeCard.classList.contains('favorite-recipe')) {
-      domUpdates.addToCookbook(event, recipeRepository, user);
-    } else if(!recipeCard.classList.contains('favorite-recipe')) {
-      domUpdates.addToCookbook(event, recipeRepository, user)
-    }
-  }
-}
-
-function displayInstructionsButton(event) {
-  // Are we actually doing anything with this logic?
-  // We're checking if the target id contains the class
-  // But then no matter what we're calling the same function
-  if (event.target.closest('button').id === 'detailsBtn') {
-    if (detailsBtn.classList.contains('display-instructions')) {
-      domUpdates.displayInstructions(event, recipeRepository);
-    } else if(!detailsBtn.classList.contains('display-instructions')) {
-      domUpdates.displayInstructions(event, recipeRepository);
-    }
-    // domUpdates.displayInstructions(event, recipeRepository)
-  }
-}
-
-function viewFavoriteRecipes(event, recipeRepository, user) {
-  if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
-    allRecipeCards.innerHTML = ' ';
+    domUpdates.addToFavoriteRecipes(event, recipeRepository, user)
+  } else if (event.target.closest('button').id === 'addToCookbookBtn') {
+    domUpdates.addToCookbook(event, recipeRepository, user)
+  } else if (event.target.closest('button').id === 'detailsBtn') {
+    domUpdates.displayInstructions(event, recipeRepository);
+  } else if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
+    user.viewFavorites()
     domUpdates.displayFavoriteRecipeCards(recipeRepository, user, globalIngredientsData)
-    }
-  }
-
-function viewCookbookRecipes(event, recipeRepository, user) {
-  if (event.target.closest('button').id === 'cookbookBtn') {
-    allRecipeCards.innerHTML = ' ';
+  } else if (event.target.closest('button').id === 'cookbookBtn') {
+    user.viewHome();
     domUpdates.displayCookbookRecipeCards(recipeRepository, user, globalIngredientsData)
-    }
-  }
-
-function viewHomePage(event, recipeRepository) {
-  if (event.target.closest('button').id === 'homeBtn') {
-    allRecipeCards.innerHTML = ' ';
+  } else if (event.target.closest('button').id === 'homeBtn') {
+    user.viewHome();
     domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
     }
-  }
-//Function that handles the what happens when a button is clicked
-//(Consider having one big if, else conditional rather than multiple functions
-//for each button's event listener)
 
 
-
-//A function that adds a recipe to the cookbook when the cook button is pressed
-// function addRecipeToCookBook(event) {
-//   let clickedRecipe = recipeRepository.recipeData.find(recipe => {
-//     if (recipe.id === Number(event.target.dataset.id) {
-//       return recipe
-//     })
-//   });
-//   return clickedRecipe
-// }
-//A function that adds a recipe to favorites when the favorite button is pressed
+}
 
 
-//A function that adds the ingredient name to the ingredient so it can be displayed
-//on the details page
 export const addNameProperty = recipe => {
-  //console.log('do you have what we need?', recipe.ingredients)
   let ingredientInfo = recipe.ingredients.map(ingredient => {
     const index = globalIngredientsData.findIndex(specificIngredient => specificIngredient.id === ingredient.id)
     return {

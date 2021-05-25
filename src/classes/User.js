@@ -19,7 +19,6 @@ class User {
   }
 
   addToFavorites(recipe) {
-    //If its not already in there, check first
     if(!this.favoriteRecipes.includes(recipe)) {
       this.favoriteRecipes.push(recipe);
     }
@@ -44,64 +43,11 @@ class User {
   filterFavoriteRecipesByTags(...tags) {
     let favoriteRecipes = new RecipeRepository(this.favoriteRecipes);
     return favoriteRecipes.retrieveRecipesByTag(...tags);
-    // const lowerCaseTags = tags.map(tag => tag.toLowerCase());
-    // let results = lowerCaseTags.reduce((matchingRecipes, tag) => {
-    //   this.favoriteRecipes.forEach(recipe => {
-    //     if (recipe.tags.includes(tag)) {
-    //       matchingRecipes.push(recipe);
-    //     }
-    //   })
-    //   return matchingRecipes
-    // }, []);
-    // return results;
   }
 
-retrieveFavoritesByNameOrIngredient(ingredientsData, ...keywords) {
-  let favoriteRecipes = new RecipeRepository(this.favoriteRecipes);
-  return favoriteRecipes.retrieveRecipesByNameOrIngredient(ingredientsData, ...keywords);
-
-
-
-
-  // {
-  //   const lowerCaseKeywords = keywords.map(keyword => keyword.toLowerCase());
-  //   const results = lowerCaseKeywords.reduce((matchingRecipes, keyword) => {
-  //     let foundIds;
-  //     foundIds = ingredientsData.filter(ingredient => ingredient.name.includes(keyword)).map(ingredient => ingredient.id);
-  //     this.favoriteRecipes.forEach(recipe => {
-  //       if (recipe.name.includes(keyword) && !matchingRecipes.includes(recipe)) {
-  //         matchingRecipes.push(recipe);
-  //       }
-  //
-  //       recipe.ingredients.forEach(ingredient => {
-  //         foundIds.forEach(id => {
-  //           if (id === ingredient.id && !matchingRecipes.includes(recipe)) {
-  //             matchingRecipes.push(recipe);
-  //           }
-  //
-  //         })
-  //       })
-  //     })
-  //     return matchingRecipes
-  //   }, []);
-  //   return results
-  //   this.favoriteRecipes.forEach(recipe => {
-  //     if (recipe.name.toLowerCase().includes(keyword)) {
-  //       matchingRecipes.push(recipe);
-  //     }
-  //
-  //     recipe.ingredients.forEach(ingredient => {
-  //       foundIds.forEach(id => {
-  //         if (id === ingredient.id) {
-  //           matchingRecipes.push(recipe);
-  //         }
-  //
-  //       })
-  //     })
-  //   });
-  //   return matchingRecipes;
-  //}
-
+  retrieveFavoritesByNameOrIngredient(ingredientsData, ...keywords) {
+    let favoriteRecipes = new RecipeRepository(this.favoriteRecipes);
+    return favoriteRecipes.retrieveRecipesByNameOrIngredient(ingredientsData, ...keywords);
   }
 
 }
