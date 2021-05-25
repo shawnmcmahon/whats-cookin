@@ -38,7 +38,7 @@ let domUpdates = {
         <article id="recipeCard" class="recipe-card">
           <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
           <div class="recipe-card-btn-section">
-            <button data-id=${recipe.id} id="viewMoreBtn" type="button" name="button">View More</button>
+            <button data-id=${recipe.id} id="detailsBtn" type="button" name="button">Details</button>
             <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
             <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
           </div>
@@ -110,12 +110,11 @@ let domUpdates = {
     allRecipeCards.innerHTML = ' ';
     user.favoriteRecipes.forEach(recipe => {
       console.log("RECIPE", recipe);
-      if (recipe.name && recipe.image) {
         allRecipeCards.insertAdjacentHTML('afterbegin', `
         <article id="recipeCard" class="recipe-card">
         <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
         <div class="recipe-card-btn-section">
-        <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+        <button data-id=${recipe.id} id="detailsBtn" type="button" name="button">Details</button>
         <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
         <button data-id=${recipe.id} id="addToFavoritesBtn" class="favorite-recipe" type="button" name="button">Favorites</button>
         </div>
@@ -136,7 +135,6 @@ let domUpdates = {
         </section>
         </article>
         `)
-      }
     })
   },
   //If no favorites available, switch the text of the favorite button from
@@ -172,7 +170,7 @@ let domUpdates = {
         <article id="recipeCard" class="recipe-card">
           <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
           <div class="recipe-card-btn-section">
-            <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">Details</button>
+            <button data-id=${recipe.id} id="detailsBtn" type="button" name="button">Details</button>
             <button data-id=${recipe.id} id="addToCookbookBtn" class="cookbook-recipe" type="button" name="button">Cook</button>
             <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
           </div>
@@ -232,7 +230,7 @@ let domUpdates = {
             <article id="recipeCard" class="recipe-card">
               <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
               <div class="recipe-card-btn-section">
-                <button data-id=${recipe.id} id="viewMoreViewLessBtn" type="button" name="button">View More</button>
+                <button data-id=${recipe.id} id="detailsBtn" type="button" name="button">Details</button>
                 <button data-id=${recipe.id} id="addToCookbookBtn" type="button" name="button">Cook</button>
                 <button data-id=${recipe.id} id="addToFavoritesBtn" type="button" name="button">Favorites</button>
               </div>

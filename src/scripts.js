@@ -20,7 +20,7 @@ const detailsBackground = document.querySelector('#detailsBackground')
 const viewFavoriteRecipesBtn = document.querySelector('#viewFavoriteRecipesBtn');
 const viewHomeBtn = document.querySelector('#homeBtn');
 const viewCookbookRecipesBtn = document.querySelector('#cookbookBtn');
-const viewMoreViewLessBtn = document.querySelector('#viewMoreViewLessBtn');
+const viewMoreViewLessBtn = document.querySelector('#detailsBtn');
 
 const searchField = document.querySelector('#searchField');
 
@@ -94,7 +94,7 @@ function addToCookbookButton(event) {
 }
 
 function displayInstructionsButton(event) {
-  if (event.target.closest('button').id === 'viewMoreBtn') {
+  if (event.target.closest('button').id === 'detailsBtn') {
     // if (viewMoreViewLessBtn.classList.contains('display-instructions')) {
     //   domUpdates.displayInstructions(event, recipeRepository);
     // } else if(!viewMoreViewLessBtn.classList.contains('display-instructions')) {
