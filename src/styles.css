@@ -69,7 +69,7 @@ div > button {
 
 .recipe-card {
   align-items: center;
-  background-color: rgba(242, 244, 249, 0.6);
+  background-color: rgba(242, 244, 249, 0.8);
   /* background-color: #f2f4f9; */
   border: 1px solid black;
   border-radius: 15px 15px 15px 15px;
@@ -102,7 +102,7 @@ div > button {
 
 
 .details-background {
-  background-color: rgba(242, 244, 249, 0.0);
+  background-color: rgba(242, 244, 249);
   display: flex;
   flex-direction: column;
   font-size: 200%;
