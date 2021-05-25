@@ -1,7 +1,7 @@
 # What's Cookin'? - Turing Mod 2 FE Project
 
 
-The "What's Cookin" site is perfect for cooking enthusiasts and those that are coooking curious. It is a website that uses hosted datasets to allow a randomized user to scroll through a list of recipes. The user can "Favorite" them, add them to a list of "Recipes to cook", review their ingredients and instructions, review a recipe's cost, or search recipes by names and tags.
+The "What's Cookin" site is perfect for cooking enthusiasts and those that are cooking curious. It is a website that uses hosted datasets to allow a randomized user to scroll through a list of recipes. The user can "Favorite" them, add them to a list of "Recipes to cook", review their ingredients and instructions, review a recipe's cost, or search recipes by names and tags.
 
 ## How To Use
 
