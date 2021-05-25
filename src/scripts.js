@@ -89,13 +89,13 @@ function retrieveButtonInstructions(event, recipeRepository, user) {
       }
 
   } else if (event.target.closest('button').id === 'viewFavoriteRecipesBtn') {
-    allRecipeCards.innerHTML = ' ';
+    user.viewFavorites()
     domUpdates.displayFavoriteRecipeCards(recipeRepository, user, globalIngredientsData)
   } else if (event.target.closest('button').id === 'cookbookBtn') {
-    allRecipeCards.innerHTML = ' ';
+    user.viewHome();
     domUpdates.displayCookbookRecipeCards(recipeRepository, user, globalIngredientsData)
   } else if (event.target.closest('button').id === 'homeBtn') {
-    allRecipeCards.innerHTML = ' ';
+    user.viewHome();
     domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
     }
 
