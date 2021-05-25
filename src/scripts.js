@@ -94,12 +94,13 @@ function addToCookbookButton(event) {
 }
 
 function displayInstructionsButton(event) {
-  if (event.target.closest('button').id === 'viewMoreViewLessBtn') {
-    if (viewMoreViewLessBtn.classList.contains('display-instructions')) {
-      domUpdates.displayInstructions(event, recipeRepository);
-    } else if(!viewMoreViewLessBtn.classList.contains('display-instructions')) {
-      domUpdates.displayInstructions(event, recipeRepository);
-    }
+  if (event.target.closest('button').id === 'viewMoreBtn') {
+    // if (viewMoreViewLessBtn.classList.contains('display-instructions')) {
+    //   domUpdates.displayInstructions(event, recipeRepository);
+    // } else if(!viewMoreViewLessBtn.classList.contains('display-instructions')) {
+    //   domUpdates.displayInstructions(event, recipeRepository);
+    // }
+    domUpdates.displayInstructions(event, recipeRepository)
   }
 }
 
