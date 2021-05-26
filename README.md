@@ -44,7 +44,9 @@ Additional enhancements could include:
 
 ## GIF
 
+![Flashcards-gif](https://media.giphy.com/media/XA8fiHkIOlLD2uQvUk/giphy.gif)
 
-"https://giphy.com/embed/PVSAw9jNx7aFygeKZg" width="480" height="256" frameBorder="0" class="giphy-embed"
+
+
 
 
