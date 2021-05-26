@@ -45,6 +45,6 @@ Additional enhancements could include:
 ## GIF
 
 
-<iframe src="https://giphy.com/embed/PVSAw9jNx7aFygeKZg" width="480" height="256" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/PVSAw9jNx7aFygeKZg">via GIPHY</a></p>
+"https://giphy.com/embed/PVSAw9jNx7aFygeKZg" width="480" height="256" frameBorder="0" class="giphy-embed"
 
 
