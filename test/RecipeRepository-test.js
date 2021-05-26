@@ -473,6 +473,6 @@ describe('Recipe Repository Class', () => {
           "dinner"
         ]
       }
-      ])
+    ])
   })
 });
