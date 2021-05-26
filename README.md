@@ -41,3 +41,7 @@ Additional enhancements could include:
 
 - [Shawn McMahon](https://github.com/ShawnMcMahon)
 - [Shauna Myers](https://github.com/ShaunaMyers)
+
+## GIF
+
+![Animated GIF-source](https://user-images.githubusercontent.com/74690897/119590714-2511eb80-bd8a-11eb-9b95-5a9cec5bfbb5.gif)
