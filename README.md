@@ -37,7 +37,7 @@ Additional enhancements could include:
 - Webpack
 - APIs
 
-## Contributors
+## Contributors 
 
 - [Shawn McMahon](https://github.com/ShawnMcMahon)
 - [Shauna Myers](https://github.com/ShaunaMyers)
