@@ -47,8 +47,3 @@ Additional enhancements could include:
 
 https://user-images.githubusercontent.com/74690897/119591392-5b9c3600-bd8b-11eb-9ec1-3110fc83bc13.mp4
 
-https://media.giphy.com/media/PVSAw9jNx7aFygeKZg/giphy.gif
-
-
-
-
