@@ -44,6 +44,6 @@ Additional enhancements could include:
 
 ## GIF
 
-![Animated GIF-source](https://user-images.githubusercontent.com/74690897/119591169-052ef780-bd8b-11eb-9c70-9cfb91b95484.gif)
+![Animated GIF-source](https://media.giphy.com/media/PVSAw9jNx7aFygeKZg/giphy.gif)
 
 
