@@ -1,14 +1,8 @@
-import Recipe from './classes/Recipe'
-import User from './classes/User'
-import { addNameProperty } from './scripts'
+import Recipe from './classes/Recipe';
+import { addNameProperty } from './scripts';
 const greeting = document.querySelector('#greeting');
 const allRecipeCards = document.querySelector('#allRecipeCards');
-const ingredientsTag = document.querySelector('#ingredients');
-const instructionsTag = document.querySelector('#instructions');
-const recipeCard = document.querySelector('#recipeCard');
 const searchField = document.querySelector('#searchField');
-const searchSection = document.querySelector('#searchSection')
-
 
 let domUpdates = {
   greetUser(user) {
@@ -71,21 +65,20 @@ let domUpdates = {
         return recipe;
       }
     })
-      if(!event.target.classList.contains('favorite-recipe')) {
-        event.target.classList.add('favorite-recipe');
-        user.addToFavorites(favoriteRecipe);
-      } else if (event.target.classList.contains('favorite-recipe')) {
-        event.target.classList.remove('favorite-recipe');
-        user.removeFromFavorites(favoriteRecipe);
-      }
+    if (!event.target.classList.contains('favorite-recipe')) {
+      event.target.classList.add('favorite-recipe');
+      user.addToFavorites(favoriteRecipe);
+    } else if (event.target.classList.contains('favorite-recipe')) {
+      event.target.classList.remove('favorite-recipe');
+      user.removeFromFavorites(favoriteRecipe);
+    }
 
   },
 
   displayFavoriteRecipeCards(recipes, user, ingredientsData) {
     allRecipeCards.innerHTML = ' ';
     user.favoriteRecipes.forEach(recipe => {
-
-        allRecipeCards.insertAdjacentHTML('afterbegin', `
+      allRecipeCards.insertAdjacentHTML('afterbegin', `
         <article id="recipeCard" class="recipe-card">
         <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
         <div class="recipe-card-btn-section">
@@ -114,13 +107,13 @@ let domUpdates = {
   },
 
   addToCookbook(event, recipes, user) {
-  const recipeToBeCooked = recipes.recipesData.find(recipe => {
-    if (recipe.id === Number(event.target.dataset.id)) {
-      return recipe;
-    }
+    const recipeToBeCooked = recipes.recipesData.find(recipe => {
+      if (recipe.id === Number(event.target.dataset.id)) {
+        return recipe;
+      }
 
-  })
-    if(!event.target.classList.contains('cookbook-recipe')) {
+    })
+    if (!event.target.classList.contains('cookbook-recipe')) {
       event.target.classList.add('cookbook-recipe');
       user.addToRecipesToCook(recipeToBeCooked);
     } else if (event.target.classList.contains('cookbook-recipe')) {
@@ -170,29 +163,29 @@ let domUpdates = {
     const detailsBackground = document.getElementById(`${clickedRecipe.id}detailsBackground`);
     const detailsBtn = document.getElementById('detailsBtn');
 
-      if (!detailsBackground.classList.contains('hidden')) {
-        detailsBtn.classList.remove('display-instructions');
-        detailsBackground.classList.add('hidden');
-      } else if (detailsBackground.classList.contains('hidden')) {
-        detailsBtn.classList.add('display-instructions');
-        detailsBackground.classList.remove('hidden');
-      }
+    if (!detailsBackground.classList.contains('hidden')) {
+      detailsBtn.classList.remove('display-instructions');
+      detailsBackground.classList.add('hidden');
+    } else if (detailsBackground.classList.contains('hidden')) {
+      detailsBtn.classList.add('display-instructions');
+      detailsBackground.classList.remove('hidden');
+    }
 
     this.selectedRecipeView();
-    },
+  },
 
-    selectedRecipeView() {
-      if (!allRecipeCards.classList.contains('selected-view')) {
-        allRecipeCards.classList.add('selected-view');
-      } else {
-        allRecipeCards.classList.remove('selected-view');
-      }
-    },
+  selectedRecipeView() {
+    if (!allRecipeCards.classList.contains('selected-view')) {
+      allRecipeCards.classList.add('selected-view');
+    } else {
+      allRecipeCards.classList.remove('selected-view');
+    }
+  },
 
-    displaySearchResults(recipes, ingredientsData, user) {
-      recipes.forEach(specificRecipe => {
-        specificRecipe.forEach(recipe => {
-          allRecipeCards.insertAdjacentHTML('afterbegin', `
+  displaySearchResults(recipes, ingredientsData) {
+    recipes.forEach(specificRecipe => {
+      specificRecipe.forEach(recipe => {
+        allRecipeCards.insertAdjacentHTML('afterbegin', `
             <article id="recipeCard" class="recipe-card">
               <img id="recipeImage" class="recipe-image" src="${recipe.image}" alt="Recipe Image">
               <div class="recipe-card-btn-section">
@@ -217,15 +210,15 @@ let domUpdates = {
               </section>
             </article>
           `)
-        })
       })
-    },
+    })
+  },
 
   searchRecipes(recipes, ingredientsData, user) {
     allRecipeCards.innerHTML = ' ';
     let searchQuery =  searchField.value;
     let results = [];
-    if(!user.viewingFavorites) {
+    if (!user.viewingFavorites) {
       const tagResults = recipes.retrieveRecipesByTag(searchQuery);
       const nameOrIngredientResults = recipes.retrieveRecipesByNameOrIngredient(ingredientsData, searchQuery);
       if (tagResults.length > 0) {

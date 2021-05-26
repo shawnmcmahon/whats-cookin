@@ -7,16 +7,11 @@ import User from './classes/User'
 let recipeRepository, user;
 let globalIngredientsData = {}
 
-const favoriteBtn = document.querySelector('.favoriteRecipesBtn');
-const cookbookBtn = document.querySelector('.cookbookBtn');
-const searchInput = document.querySelector('#searchField');
+
 const allRecipeCards = document.querySelector('#allRecipeCards');
-const recipeCard = document.querySelector('#recipeCard');
-const detailsBackground = document.querySelector('#detailsBackground')
 const viewFavoriteRecipesBtn = document.querySelector('#viewFavoriteRecipesBtn');
 const viewHomeBtn = document.querySelector('#homeBtn');
 const viewCookbookRecipesBtn = document.querySelector('#cookbookBtn');
-const detailsBtn = document.querySelector('#detailsBtn');
 const searchField = document.querySelector('#searchField');
 
 window.onload = onStartUp();
@@ -43,7 +38,7 @@ viewHomeBtn.addEventListener('click', function() {
 
 searchField.addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
-  domUpdates.searchRecipes(recipeRepository, globalIngredientsData, user);
+    domUpdates.searchRecipes(recipeRepository, globalIngredientsData, user);
   }
 
 })
@@ -76,7 +71,7 @@ function retrieveButtonInstructions(event, recipeRepository, user) {
   } else if (event.target.closest('button').id === 'homeBtn') {
     user.viewHome();
     domUpdates.displayRecipeCards(recipeRepository, user, globalIngredientsData)
-    }
+  }
 
 
 }
