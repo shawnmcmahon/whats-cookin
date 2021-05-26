@@ -1,22 +1,43 @@
-# What's Cookin'? Starter Kit 
+# What's Cookin'? - Turing Mod 2 FE Project
 
-The details of this project are outlined in the <a href="https://frontend.turing.io/projects/whats-cookin.html" target="\__blank">project spec</a>.
 
-## Set Up 
+The "What's Cookin" site is perfect for cooking enthusiasts and those that are cooking curious. It is a website that uses hosted datasets to allow a randomized user to scroll through a list of recipes. The user can "Favorite" them, add them to a list of "Recipes to cook", review their ingredients and instructions, review a recipe's cost, or search recipes by names and tags.
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button. 
-2. Both group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` or `npm i` to install project dependencies.
-4. Run `npm start` and visit `localhost:8080`
-5. Make sure both members of your team are collaborators on the forked repo.
+## How To Use
 
-## Testing 
+### In the future, a deployable link will be available...
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran npm install, then the tooling you need to start testing is already installed (mocha and chai).
+At that time a user will be able to:
 
-## Linting Your Code 
+1. Click the link to be taken to the live site.
+2. See recipe cards populate on the home screen.
+3. Click on the "Details" button on any recipe card to see instructions, ingredients, and cost.
+4. Click the "Cook" button to add a recipe to a section that saves recipes to cook.
+5. Click the "favorite" button to add a recipe to a section that saves favorite recipes.
+6. Search for specific recipes, in the search field at the top of each page, by tags, ingredient name, or recipe name.
 
-Run the command in your terminal npm run lint to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
 
-Your linter will look only at the JavaScript files you have within the src and the test directories.
+## Next Steps
 
+Additional enhancements could include:
+
+- Determine what ingredients are needed based on what ingredients a user has in their pantry.
+- Calculate the amount of specific ingredients a user would need to buy.
+- Calculate the total average cost of a grocery list, based on the ingredients needed.
+- A feature for users to be able to add reviews to each recipe.
+- A feature for users to email recipes to themselves or a friend.
+- Personalized user accounts, so that a user could return again and again and view their selections.
+
+## Techonologies Implemented
+
+- JavaScript
+- Git & GitHub
+- Mocha & Chai
+- Local Server
+- Webpack
+- APIs
+
+## Contributors
+
+- [Shawn McMahon](https://github.com/ShawnMcMahon)
+- [Shauna Myers](https://github.com/ShaunaMyers)
